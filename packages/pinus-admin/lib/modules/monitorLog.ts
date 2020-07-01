@@ -3,7 +3,7 @@
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import { exec } from 'child_process';
 import * as path from 'path';
 import { IModule, MonitorCallback } from '../consoleService';

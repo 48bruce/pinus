@@ -2,13 +2,13 @@
  * Component for monitor.
  * Load and start monitor client.
  */
-import { getLogger } from 'pinus-logger';
-import * as admin from 'pinus-admin';
+import { getLogger } from 'pinusmod-logger';
+import * as admin from 'pinusmod-admin';
 import * as moduleUtil from '../util/moduleUtil';
 import * as utils from '../util/utils';
 import * as Constants from '../util/constants';
 import { Application } from '../application';
-import { ConsoleService, IModule } from 'pinus-admin';
+import { ConsoleService, IModule } from 'pinusmod-admin';
 import { ServerInfo } from '../util/constants';
 import { ServerStartArgs } from '../util/appUtil';
 import { MasterInfo } from '../index';

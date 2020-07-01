@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import * as utils from '../../util/utils';
-import * as Loader from 'pinus-loader';
+import * as Loader from 'pinusmod-loader';
 import * as pathUtil from '../../util/pathUtil';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import { Application } from '../../application';
 import { Session, FrontendSession } from './sessionService';
 import { RouteRecord, ServerInfo } from '../../util/constants';
 import { BackendSession } from './backendSessionService';
 import * as path from 'path';
-import { LoaderPathType } from 'pinus-loader';
+import { LoaderPathType } from 'pinusmod-loader';
 
 let logger = getLogger('pinus', path.basename(__filename));
 let forwardLogger = getLogger('forward-log', path.basename(__filename));

@@ -1,7 +1,7 @@
-import { pinus } from 'pinus';
+import { pinus } from 'pinusmod';
 import * as  routeUtil from './app/util/routeUtil';
 import { preload } from './preload';
-import { createRobotPlugin } from 'pinus-robot-plugin';
+import { createRobotPlugin } from 'pinusmod-robot-plugin';
 
 /**
  *  替换全局Promise

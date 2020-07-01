@@ -3,13 +3,9 @@
   "packages": [
     "packages/*",
     "tools/*",
-    "plugins/*",
-    "examples/simple-example/*",
-    "examples/websocket-chat/*",
-    "examples/websocket-chat-ts-run/*",
-    "examples/robot-sample"
+    "plugins/*"
   ],
-  "version": "1.4.8",
+  "version": "1.4.18",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

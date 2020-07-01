@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'Coder');
 import * as OutBuffer from './buffer/outputBuffer';
 import * as InBuffer from './buffer/inputBuffer';

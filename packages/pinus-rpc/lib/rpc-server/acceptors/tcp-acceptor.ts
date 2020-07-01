@@ -6,7 +6,7 @@ import * as util from 'util';
 import * as net from 'net';
 import * as Coder from '../../util/coder';
 import {AcceptorOpts, IAcceptor, AcceptorCallback} from '../acceptor';
-import { getLogger, Logger } from 'pinus-logger';
+import { getLogger, Logger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'tcp-acceptor');
 
 export interface AcceptorPkg {

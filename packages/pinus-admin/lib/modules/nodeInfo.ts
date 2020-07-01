@@ -3,11 +3,11 @@
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import * as monitor from 'pinus-monitor';
-import { getLogger } from 'pinus-logger'; import { IModule, ModuleType, MonitorCallback, MasterCallback } from '../consoleService';
+import * as monitor from 'pinusmod-monitor';
+import { getLogger } from 'pinusmod-logger'; import { IModule, ModuleType, MonitorCallback, MasterCallback } from '../consoleService';
 import { MonitorAgent } from '../monitor/monitorAgent';
 import { MasterAgent } from '../master/masterAgent';
-import { PsParam } from 'pinus-monitor';
+import { PsParam } from 'pinusmod-monitor';
 import * as path from 'path';
 let logger = getLogger('pinus-admin', path.basename(__filename));
 

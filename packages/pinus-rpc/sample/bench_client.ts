@@ -20,7 +20,7 @@ preload();
 
 
 import { RpcClient, RpcMsg, RouteContext, RouteServers } from '../index';
-import { configure } from 'pinus-logger';
+import { configure } from 'pinusmod-logger';
 configure('./config/log4js.json');
 
 // remote service interface path info list

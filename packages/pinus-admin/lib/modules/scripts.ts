@@ -4,8 +4,8 @@
  * MIT Licensed
  */
 
-import { getLogger } from 'pinus-logger';
-import * as monitor from 'pinus-monitor';
+import { getLogger } from 'pinusmod-logger';
+import * as monitor from 'pinusmod-monitor';
 import * as vm from 'vm';
 import * as fs from 'fs';
 import * as util from 'util';

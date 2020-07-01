@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import {EventEmitter } from 'events';
 import * as constants from '../../util/constants';
 import * as Util from 'util';

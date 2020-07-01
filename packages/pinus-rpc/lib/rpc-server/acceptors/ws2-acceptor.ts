@@ -3,7 +3,7 @@ import * as util from 'util';
 import * as utils from '../../util/utils';
 import * as ws from 'ws';
 import * as zlib from 'zlib';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', __filename);
 import { Tracer } from '../../util/tracer';
 import * as Coder from '../../util/coder';

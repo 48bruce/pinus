@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Protobuf } from 'pinus-protobuf';
+import { Protobuf } from 'pinusmod-protobuf';
 import * as Constants from '../util/constants';
 import * as crypto from 'crypto';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
 import AppEvents from '../util/events';

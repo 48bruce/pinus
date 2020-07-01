@@ -1,5 +1,5 @@
 
-import { Application, ServerInfo, FrontendSession } from 'pinus';
+import { Application, ServerInfo, FrontendSession } from 'pinusmod';
 import { createHash } from 'crypto';
 import { Code, ConnectorHost, common } from '../common';
 

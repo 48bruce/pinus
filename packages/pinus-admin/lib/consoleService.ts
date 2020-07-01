@@ -1,8 +1,8 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import {MonitorAgent} from './monitor/monitorAgent';
 import { EventEmitter } from 'events';
 import { MasterAgent, MasterAgentOptions } from './master/masterAgent';
-import * as schedule from 'pinus-scheduler';
+import * as schedule from 'pinusmod-scheduler';
 import * as protocol from './util/protocol';
 import * as utils from './util/utils';
 import * as util from 'util';

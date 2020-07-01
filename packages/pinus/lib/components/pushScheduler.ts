@@ -3,7 +3,7 @@
  */
 
 import {DirectPushScheduler as DefaultScheduler} from '../pushSchedulers/direct';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
 import { IPushScheduler, ScheduleOptions, IPushSchedulerOrCtor, IPushSchedulerOptions, MultiPushSchedulerOptions } from '../interfaces/IPushScheduler';

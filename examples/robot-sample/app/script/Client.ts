@@ -1,5 +1,5 @@
 import * as pinus from './PinusForEgret';
-import { Actor } from 'pinus-robot';
+import { Actor } from 'pinusmod-robot';
 
 
 export class Client {

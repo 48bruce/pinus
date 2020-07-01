@@ -1,6 +1,6 @@
 {
-  "name": "pinus-robot",
-  "version": "1.4.8",
+  "name": "pinusmod-robot",
+  "version": "1.4.16",
   "private": false,
   "dependencies": {
     "cliff": "^0.1.10",
@@ -31,7 +31,7 @@
   ],
   "readmeFilename": "README.md",
   "gitHead": "d33db82d670b7a5d21c95e15f91548f8a8ba7821",
-  "description": "pinus-robot is a simple tool to benchmark the socket.io server's performance.",
+  "description": "pinusmod-robot is a simple tool to benchmark the socket.io server's performance.",
   "main": "./dist/index",
   "types": "./index.ts",
   "repository": {

@@ -65,10 +65,10 @@ export * from './interfaces/IPushScheduler';
 export * from './interfaces/ISocket';
 export * from './interfaces/IStore';
 
-export * from 'pinus-admin';
-export * from 'pinus-loader';
-export * from 'pinus-logger';
-export * from 'pinus-protobuf';
-export * from 'pinus-protocol';
-export * from 'pinus-rpc';
-export * from 'pinus-scheduler';
+export * from 'pinusmod-admin';
+export * from 'pinusmod-loader';
+export * from 'pinusmod-logger';
+export * from 'pinusmod-protobuf';
+export * from 'pinusmod-protocol';
+export * from 'pinusmod-rpc';
+export * from 'pinusmod-scheduler';

@@ -2,12 +2,12 @@
  * Filter for rpc log.
  * Record used time for remote process call.
  */
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'pinusmod-logger';
 
 let rpcLogger = getLogger('rpc-log', __filename);
 
 import * as utils from '../../util/utils';
-import {IRpcFilter} from 'pinus-rpc';
+import {IRpcFilter} from 'pinusmod-rpc';
 
 export class RpcLogFilter implements IRpcFilter {
     name = 'rpcLog';

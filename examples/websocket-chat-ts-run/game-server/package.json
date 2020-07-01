@@ -1,7 +1,7 @@
 {
-    "name": "pinus-sample-websocket-chat-game-server-ts-run",
-    "version": "1.4.8",
-    "private": false,
+    "name": "pinusmod-sample-websocket-chat-game-server-ts-run",
+    "version": "1.4.11",
+    "private": true,
     "main": "./dist/app",
     "scripts": {
         "build": "tsc",
@@ -18,9 +18,9 @@
         "@types/node": "8.10.54",
         "bluebird": "^3.5.1",
         "crc": "^3.5.0",
-        "pinus": "^1.4.8",
-        "pinus-robot": "^1.4.8",
-        "pinus-robot-plugin": "^1.4.8",
+        "pinusmod": "^1.4.11",
+        "pinusmod-robot": "^1.4.11",
+        "pinusmod-robot-plugin": "^1.4.11",
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0",
         "ts-node": "^8.2.0"

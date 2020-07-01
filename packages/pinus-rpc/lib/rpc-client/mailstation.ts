@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'MailStation');
 import { EventEmitter } from 'events';
 // import * as blackhole from './mailboxes/blackhole';

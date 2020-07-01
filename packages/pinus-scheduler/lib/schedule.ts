@@ -6,7 +6,7 @@ import * as Job from './job';
 import { SimpleTriggerOpts } from './simpleTrigger';
 
 
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
 let logger = getLogger('pinus-scheduler', path.basename(__filename));
 

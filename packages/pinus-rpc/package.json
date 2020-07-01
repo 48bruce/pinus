@@ -1,6 +1,6 @@
 {
-	"name": "pinus-rpc",
-	"version": "1.4.8",
+	"name": "pinusmod-rpc",
+	"version": "1.4.17",
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
@@ -26,8 +26,8 @@
 		"bluebird": "^3.5.1",
 		"crc": "^0.2.1",
 		"mqtt-connection": "^3.2.0",
-		"pinus-loader": "^1.4.8",
-		"pinus-logger": "^1.4.8",
+		"pinusmod-loader": "^1.4.16",
+		"pinusmod-logger": "^1.4.16",
 		"socket.io": "^2.3.0",
 		"source-map-support": "^0.5.0",
 		"stream-pkg": "0.0.5",
@@ -39,7 +39,7 @@
 		"@types/bluebird": "^3.5.19",
 		"@types/crc": "^3.4.0",
 		"@types/node": "8.10.54",
-		"@types/socket.io": "^2.1.6",
+		"@types/socket.io": "^2.1.4",
 		"@types/socket.io-client": "^1.4.32",
 		"@types/uuid": "^3.4.3",
 		"@types/ws": "^6.0.0",

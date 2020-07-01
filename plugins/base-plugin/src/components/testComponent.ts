@@ -1,4 +1,4 @@
-import { IComponent, Application } from 'pinus';
+import { IComponent, Application } from 'pinusmod';
 
 
 export class TestComponent implements IComponent {

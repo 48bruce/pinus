@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import * as utils from '../util/utils';
 
 import * as path from 'path';

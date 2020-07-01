@@ -2,7 +2,7 @@
  * This is the trigger used to decode the cronTimer and calculate the next excution time of the cron Trigger.
  */
 import { Job } from './job';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
 let logger = getLogger('pinus-scheduler', path.basename(__filename));
 

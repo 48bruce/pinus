@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import { MqttServer, MqttSocket } from '../protocol/mqtt/mqttServer';
 import { EventEmitter } from 'events';
 import { MasterSocket } from './masterSocket';

@@ -1,6 +1,6 @@
-import { pinus } from 'pinus';
+import { pinus } from 'pinusmod';
 import { preload } from './preload';
-import { createBasePlugin } from 'pinus-base-plugin';
+import { createBasePlugin } from 'pinusmod-base-plugin';
 
 /**
  *  替换全局Promise

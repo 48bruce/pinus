@@ -1,4 +1,4 @@
-import { getLogger, Logger } from 'pinus-logger';
+import { getLogger, Logger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'mqtt-acceptor');
 import { EventEmitter } from 'events';
 import { Tracer } from '../../util/tracer';

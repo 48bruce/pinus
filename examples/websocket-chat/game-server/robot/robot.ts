@@ -1,6 +1,6 @@
 
-import { Actor } from 'pinus-robot';
-import { PinusWSClient, PinusWSClientEvent} from 'pinus-robot-plugin';
+import { Actor } from 'pinusmod-robot';
+import { PinusWSClient, PinusWSClientEvent} from 'pinusmod-robot-plugin';
 
 
 export class Robot {

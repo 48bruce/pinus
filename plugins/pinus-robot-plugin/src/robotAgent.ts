@@ -1,5 +1,5 @@
-import { Application , IPlugin} from 'pinus';
-import { Robot, RobotCfg } from 'pinus-robot';
+import { Application , IPlugin} from 'pinusmod';
+import { Robot, RobotCfg } from 'pinusmod-robot';
 import * as  fs from 'fs';
 import * as yargs from 'yargs';
 let argv = yargs.argv;

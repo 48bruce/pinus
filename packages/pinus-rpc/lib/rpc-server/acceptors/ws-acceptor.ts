@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'ws-acceptor');
 import { EventEmitter } from 'events';
 import { Tracer } from '../../util/tracer';

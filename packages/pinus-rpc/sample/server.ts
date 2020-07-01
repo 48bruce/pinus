@@ -2,8 +2,8 @@ require('source-map-support/register');
 import {preload} from './preload';
 preload();
 import {createServer, createTcpAcceptor} from '../index';
-import { configure } from 'pinus-logger';
-import {getLogger} from 'pinus-logger';
+import { configure } from 'pinusmod-logger';
+import {getLogger} from 'pinusmod-logger';
 // configure('./config/log4js.json');
 let logger = getLogger('pinus-rpc', 'sample-server');
 

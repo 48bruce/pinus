@@ -1,4 +1,4 @@
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'pinusmod-logger';
 import * as taskManager from '../common/manager/taskManager';
 import {pinus} from '../pinus';
 

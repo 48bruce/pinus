@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 let logger = getLogger('pinus-rpc', 'OutputBuffer');
 import * as Utils from '../utils';
 let BUFFER_SIZE_DEFAULT = 32;

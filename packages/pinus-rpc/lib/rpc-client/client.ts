@@ -1,11 +1,11 @@
-import { getLogger, Logger } from 'pinus-logger';
+import { getLogger, Logger } from 'pinusmod-logger';
 import { failureProcess } from './failureProcess';
 import { constants } from '../util/constants';
 import * as Station from './mailstation';
 import { MailStation, MailStationErrorHandler, MailStationOpts, RpcFilter, RpcServerInfo } from './mailstation';
 import { Tracer } from '../util/tracer';
-import * as Loader from 'pinus-loader';
-import { LoaderPathType } from 'pinus-loader';
+import * as Loader from 'pinusmod-loader';
+import { LoaderPathType } from 'pinusmod-loader';
 import { listEs6ClassMethods } from '../util/utils';
 import * as router from './router';
 import * as async from 'async';

@@ -1,5 +1,5 @@
 
-import { Application, FrontendSession, BackendSession } from 'pinus';
+import { Application, FrontendSession, BackendSession } from 'pinusmod';
 
 // handler入口示例
 export class HelloHandler {

@@ -1,6 +1,6 @@
 let envConfig = require('./app/config/env.json');
 let config = require('./app/config/' + envConfig.env + '/config');
-import { Robot } from 'pinus-robot';
+import { Robot } from 'pinusmod-robot';
 import * as  fs from 'fs';
 
 let robot = new Robot(config);
