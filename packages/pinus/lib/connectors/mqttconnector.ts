@@ -8,14 +8,14 @@ import * as generate from './mqtt/generate';
 import { getLogger } from 'pinusmod-logger';
 import { IConnector } from '../interfaces/IConnector';
 import * as path from 'path';
-import { MqttConnectionConstructor } from 'pinus-admin';
+import { MqttConnectionConstructor } from 'pinusmod-admin';
 let logger = getLogger('pinus', path.basename(__filename));
 const mqtt_connection: MqttConnectionConstructor = require('mqtt-connection');
 
 
 export interface MQTTConnectorOptions {
-    publishRoute ?: string;
-    subscribeRoute ?: string;
+    publishRoute?: string;
+    subscribeRoute?: string;
 }
 
 let curId = 1;
@@ -30,7 +30,7 @@ export class MQTTConnector extends EventEmitter implements IConnector {
     opts: any;
     adaptor: MqttAdaptor;
     server: net.Server;
-    constructor(port: number, host: string, opts ?: MQTTConnectorOptions) {
+    constructor(port: number, host: string, opts?: MQTTConnectorOptions) {
         super();
         this.port = port;
         this.host = host;

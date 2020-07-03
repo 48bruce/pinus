@@ -44,7 +44,7 @@ export class ProtobufComponent implements IComponent {
     clientProtos: {
         [key: string]: any;
     } = {};
-    version = '';
+    version = 0;
     serverProtosPath: string;
     clientProtosPath: string;
 
@@ -60,7 +60,7 @@ export class ProtobufComponent implements IComponent {
         return true;
     }
 
-    constructor(app: Application, opts ?: ProtobufComponentOptions) {
+    constructor(app: Application, opts?: ProtobufComponentOptions) {
         this.app = app;
         opts = opts || {};
         logger.debug('ProtobufComponent options:', opts)
@@ -119,20 +119,28 @@ export class ProtobufComponent implements IComponent {
         this.onUpdate(Constants.RESERVED.CLIENT, truePath, 'change');
     }
 
+    updateVersion(path: string) {
+        const time = fs.statSync(path).mtime.getTime();
+        if (this.version < time) {
+            this.version = time;
+        }
+    }
+
     setProtos(type: string, path: string) {
         if (!this._canRequire(path)) {
             return;
         }
         if (type === Constants.RESERVED.SERVER) {
-            this.serverProtos = Protobuf.parse(require(path));
+            this.serverProtos = require(path);
         }
 
         if (type === Constants.RESERVED.CLIENT) {
-            this.clientProtos = Protobuf.parse(require(path));
+            this.clientProtos = require(path);
         }
 
-        let protoStr = JSON.stringify(this.clientProtos) + JSON.stringify(this.serverProtos);
-        this.version = crypto.createHash('md5').update(protoStr).digest('base64');
+        // let protoStr = JSON.stringify(this.clientProtos) + JSON.stringify(this.serverProtos);
+        // this.version = crypto.createHash('md5').update(protoStr).digest('base64');
+        this.updateVersion(path);
 
         // Watch file
         const truePath = require.resolve(path);
@@ -164,7 +172,7 @@ export class ProtobufComponent implements IComponent {
         let self = this;
         this.clearRequireCache(path);
         try {
-            let protos = Protobuf.parse(require(path));
+            let protos = require(path);
             // 预防 git checkout这样的操作导致获得的数据为空的情况
             if (!protos || !Object.keys(protos).length) {
                 // retry.
@@ -178,8 +186,7 @@ export class ProtobufComponent implements IComponent {
                 self.clientProtos = protos;
             }
 
-            let protoStr = JSON.stringify(self.clientProtos) + JSON.stringify(self.serverProtos);
-            self.version = crypto.createHash('md5').update(protoStr).digest('base64');
+            self.updateVersion(path);
             logger.info('change proto file , type : %j, path : %j, version : %j', type, path, self.version);
             // 抛出 proto 变化事件。
             self.app.event.emit(AppEvents.PROTO_CHANGED, type);
