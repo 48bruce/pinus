@@ -1,6 +1,6 @@
 {
     "name": "pinusmod-logger",
-    "version": "1.4.19",
+    "version": "1.4.21",
     "private": false,
     "main": "./dist/index",
     "types": "./lib/index",

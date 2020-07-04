@@ -1,6 +1,6 @@
 {
 	"name": "pinusmod-loader",
-	"version": "1.4.19",
+	"version": "1.4.21",
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
