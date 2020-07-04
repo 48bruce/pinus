@@ -1,0 +1,40 @@
+{
+    "name": "pinusmod-kcp",
+    "version": "1.4.20",
+    "description": "用于 pinus (ts 版 pomelo)，提供一个 kcp 的 connector",
+    "main": "./dist/index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bruce48x/pinus-kcp.git"
+    },
+    "keywords": [
+        "pinus",
+        "pomelo",
+        "kcp"
+    ],
+    "author": "bruce48x",
+    "license": "MIT",
+    "dependencies": {
+        "node-kcp-x": "^0.2",
+        "pinusmod": "^1.4.21",
+        "pinusmod-protobuf": "^1.4.21",
+        "pinusmod-protocol": "^1.4.21"
+    },
+    "devDependencies": {
+        "@types/async": "^3.2.3",
+        "@types/crc": "^3.4.0",
+        "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
+        "@types/node": "^8.10.51",
+        "@types/socket.io": "^2.1.8",
+        "@types/uuid": "^8.0.0",
+        "@types/ws": "^7.2.6",
+        "typescript": "^3.9.6"
+    },
+    "bugs": {
+        "url": "https://github.com/bruce48x/pinus-kcp/issues"
+    },
+    "homepage": "https://github.com/bruce48x/pinus-kcp#readme"
+}
