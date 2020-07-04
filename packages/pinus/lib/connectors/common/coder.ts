@@ -6,7 +6,7 @@ import * as path from 'path';
 let logger = getLogger('pinus', path.basename(__filename));
 
 
-let encode = function (this: IConnector ,  reqId: number, route: string, msg: any) {
+let encode = function (this: IConnector, reqId: number, route: string, msg: any) {
     if (!!reqId) {
         return composeResponse(this, reqId, route, msg);
     } else {
@@ -14,7 +14,7 @@ let encode = function (this: IConnector ,  reqId: number, route: string, msg: an
     }
 };
 
-let decode = function (this: any ,  msg: any) {
+let decode = function (this: any, msg: any) {
     msg = Message.decode(msg.body);
     let route = msg.route;
 
@@ -34,10 +34,9 @@ let decode = function (this: any ,  msg: any) {
     }
 
     // decode use protobuf
-    if (!!this.protobuf && !!this.protobuf.getProtos().client[route]) {
-        msg.body = this.protobuf.decode(route, msg.body);
-    } else if (!!this.decodeIO_protobuf && !!this.decodeIO_protobuf.check(Constants.RESERVED.CLIENT, route)) {
-        msg.body = this.decodeIO_protobuf.decode(route, msg.body);
+    const normalizedRoute = this.protobuf.normalizeRoute(route);
+    if (!!this.protobuf && !!this.protobuf.check('client', normalizedRoute)) {
+        msg.body = this.protobuf.decode(normalizedRoute, msg.body);
     } else {
         try {
             msg.body = JSON.parse(msg.body.toString('utf8'));
@@ -76,18 +75,16 @@ let composePush = function (server: any, route: string, msgBody: any) {
 
 let encodeBody = function (server: any, route: string, msgBody: any) {
     // encode use protobuf
-    if (!!server.protobuf && !!server.protobuf.getProtos().server[route]) {
-        msgBody = server.protobuf.encode(route, msgBody);
-    } else if (!!server.decodeIO_protobuf && !!server.decodeIO_protobuf.check(Constants.RESERVED.SERVER, route)) {
-        msgBody = server.decodeIO_protobuf.encode(route, msgBody);
+    const normalizedRoute = server.protobuf.normalizeRoute(route);
+    if (!!server.protobuf && !!server.protobuf.check('server', normalizedRoute)) {
+        msgBody = server.protobuf.encode(normalizedRoute, msgBody);
     } else {
         msgBody = Buffer.from(JSON.stringify(msgBody), 'utf8');
     }
     return msgBody;
 };
 
-export
-{
+export {
     encode,
     decode
 };

@@ -52,11 +52,32 @@ export class Protobuf {
     }
 
     normalizeRoute(route: string): string {
-        return route.split('.').join('');
+        return route && route.split('.').join('');
+    }
+
+    check(type: 'server' | 'client', route: string): any {
+        switch (type) {
+            case SERVER:
+                if (!this.serverProtoRoot) {
+                    return null;
+                }
+                return this.serverProtoRoot.lookup(route);
+                break;
+            case CLIENT:
+                if (!this.clientProtoRoot) {
+                    return null;
+                }
+                return this.clientProtoRoot.lookup(route);
+                break;
+            default:
+                throw new Error(
+                    `decodeIO meet with error type of protos, type: ${type} route: ${route}`,
+                );
+                break;
+        }
     }
 
     encode(route: string, message: { [key: string]: any }): Uint8Array {
-        route = this.normalizeRoute(route);
         const ProtoMessage = this.serverProtoRoot.lookupType(route);
         if (!ProtoMessage) {
             throw Error('not such route ' + route);
@@ -90,7 +111,6 @@ export class Protobuf {
     }
 
     decode(route: string, message: Buffer): any {
-        route = this.normalizeRoute(route);
         const ProtoMessage = this.clientProtoRoot.lookupType(route);
         if (!ProtoMessage) {
             throw Error('not such route ' + route);

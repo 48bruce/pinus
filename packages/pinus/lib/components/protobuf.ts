@@ -126,6 +126,14 @@ export class ProtobufComponent implements IComponent {
         }
     }
 
+    normalizeRoute(route: string): string {
+        return this.protobuf.normalizeRoute(route);
+    }
+
+    check(type: 'server' | 'client', route: string): string {
+        return this.protobuf.check(type, route);
+    }
+
     setProtos(type: string, path: string) {
         if (!this._canRequire(path)) {
             return;
