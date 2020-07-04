@@ -1,6 +1,6 @@
 {
   "name": "pinusmod",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "homepage": "https://github.com/mybios/pinus",
   "repository": {
     "type": "git",
@@ -58,7 +58,7 @@
     "pinusmod-admin": "^1.4.19",
     "pinusmod-loader": "^1.4.19",
     "pinusmod-logger": "^1.4.19",
-    "pinusmod-protobuf": "^1.4.19",
+    "pinusmod-protobuf": "^1.4.20",
     "pinusmod-protocol": "^1.4.19",
     "pinusmod-rpc": "^1.4.19",
     "pinusmod-scheduler": "^1.4.19",

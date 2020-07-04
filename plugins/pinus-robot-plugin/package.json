@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-robot-plugin",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "description": "pinus robot plugin",
   "files": [
     "dist",
@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "pinusmod": "^1.4.19",
+    "pinusmod": "^1.4.20",
     "yargs": "^15.0.0"
   },
   "devDependencies": {
