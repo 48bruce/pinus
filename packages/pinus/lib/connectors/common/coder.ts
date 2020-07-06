@@ -34,7 +34,7 @@ let decode = function (this: any, msg: any) {
     }
 
     // decode use protobuf
-    const normalizedRoute = this.protobuf.normalizeRoute(route);
+    const normalizedRoute = this.protobuf && this.protobuf.normalizeRoute(route);
     if (!!this.protobuf && !!this.protobuf.check('client', normalizedRoute)) {
         msg.body = this.protobuf.decode(normalizedRoute, msg.body);
     } else {
@@ -75,7 +75,7 @@ let composePush = function (server: any, route: string, msgBody: any) {
 
 let encodeBody = function (server: any, route: string, msgBody: any) {
     // encode use protobuf
-    const normalizedRoute = server.protobuf.normalizeRoute(route);
+    const normalizedRoute = server.protobuf && server.protobuf.normalizeRoute(route);
     if (!!server.protobuf && !!server.protobuf.check('server', normalizedRoute)) {
         msgBody = server.protobuf.encode(normalizedRoute, msgBody);
     } else {
