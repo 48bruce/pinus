@@ -24,6 +24,7 @@
     "pinusmod-protobuf": "^1.4.11",
     "pinusmod-protocol": "^1.4.11",
     "pinusmod-robot": "^1.4.11",
+    "cli-color": "^2.0.0",
     "ws": "^3.2.0"
   },
   "devDependencies": {
