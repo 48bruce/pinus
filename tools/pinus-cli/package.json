@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-cli",
-  "version": "1.4.21",
+  "version": "1.4.24",
   "description": "pinus command line client for managing pinus",
   "scripts": {
     "build": "tsc",
@@ -33,7 +33,7 @@
     "async": "^3.0.0",
     "cliff": "^0.1.10",
     "optimist": "^0.6.1",
-    "pinusmod-admin": "^1.4.21",
+    "pinusmod-admin": "^1.4.24",
     "pinusmod-logger": "^1.4.21"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "pinusmod",
-  "version": "1.4.23",
+  "version": "1.4.24",
   "homepage": "https://github.com/mybios/pinus",
   "repository": {
     "type": "git",
@@ -55,7 +55,7 @@
     "mkdirp": "^0.5.1",
     "mqtt-connection": "^4.0.0",
     "node-bignumber": "^1.2.1",
-    "pinusmod-admin": "^1.4.21",
+    "pinusmod-admin": "^1.4.24",
     "pinusmod-loader": "^1.4.21",
     "pinusmod-logger": "^1.4.21",
     "pinusmod-protobuf": "^1.4.21",

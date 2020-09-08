@@ -1,6 +1,6 @@
 {
     "name": "pinusmod-kcp",
-    "version": "1.4.23",
+    "version": "1.4.24",
     "description": "用于 pinus (ts 版 pomelo)，提供一个 kcp 的 connector",
     "main": "./dist/index.js",
     "scripts": {
@@ -19,7 +19,7 @@
     "license": "MIT",
     "dependencies": {
         "node-kcp-x": "^0.2",
-        "pinusmod": "^1.4.23",
+        "pinusmod": "^1.4.24",
         "pinusmod-protobuf": "^1.4.21",
         "pinusmod-protocol": "^1.4.21"
     },
