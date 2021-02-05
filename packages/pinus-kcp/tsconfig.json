@@ -53,6 +53,7 @@
     "types": [
       "node"
     ],
+    "newLine": "lf", // 统一跨平台下编译文件的换行符
     /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     "esModuleInterop": false,
