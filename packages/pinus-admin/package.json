@@ -25,9 +25,9 @@
     },
     "dependencies": {
         "mqtt-connection": "^3.2.0",
-        "pinusmod-logger": "^1.4.21",
-        "pinusmod-monitor": "^1.4.21",
-        "pinusmod-scheduler": "^1.4.21",
+        "pinusmod-logger": "^1.4.25",
+        "pinusmod-monitor": "^1.4.25",
+        "pinusmod-scheduler": "^1.4.25",
         "read-last-lines": "^1.3.0"
     },
     "devDependencies": {
