@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-k8s-plugin",
-  "version": "1.4.24",
+  "version": "1.4.25",
   "description": "pinus base plugin",
   "files": [
     "dist",
@@ -23,7 +23,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "pinusmod": "^1.4.24"
+    "pinusmod": "^1.4.25"
   },
   "devDependencies": {
     "@types/node": "^10",

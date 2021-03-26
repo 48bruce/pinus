@@ -1,6 +1,6 @@
 {
     "name": "pinusmod-admin",
-    "version": "1.4.24",
+    "version": "1.4.25",
     "main": "./dist/index",
     "types": "./lib/index",
     "files": [

@@ -40,6 +40,7 @@ function getLogger(...args: string[]) {
         pLogger[key] = logger[key];
     }
     let pause = false;
+    process.setMaxListeners(0);
     process.on('log4js:pause', (val) => {
         pause = val;
     });
