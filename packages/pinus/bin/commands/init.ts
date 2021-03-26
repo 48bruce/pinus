@@ -119,7 +119,7 @@ function copy(origin: string, target: string) {
         let tCurrent = path.resolve(target, datalist[i]);
         if (fs.statSync(oCurrent).isFile()) {
             console.log(('   create : ' as any).green + tCurrent + ' from : ' + oCurrent);
-            fs.writeFileSync(tCurrent, fs.readFileSync(oCurrent, ''), '');
+            fs.writeFileSync(tCurrent, fs.readFileSync(oCurrent), '');
         } else if (fs.statSync(oCurrent).isDirectory()) {
             copy(oCurrent, tCurrent);
         }

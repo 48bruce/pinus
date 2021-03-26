@@ -1,6 +1,6 @@
 {
 	"name": "pinusmod-loader",
-	"version": "1.4.25",
+	"version": "1.4.26",
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
@@ -20,13 +20,13 @@
 		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-loader lib/"
 	},
 	"engines": {
-		"node": ">=10"
+		"node": ">=14"
 	},
 	"dependencies": {
 		"reflect-metadata": "0.1.13"
 	},
 	"devDependencies": {
-		"@types/node": "^10",
+		"@types/node": "^14",
 		"mocha": "6.2.2",
 		"should": "13.2.3",
 		"tslint": "5.20.1",

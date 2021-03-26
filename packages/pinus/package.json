@@ -1,6 +1,6 @@
 {
   "name": "pinusmod",
-  "version": "1.4.25",
+  "version": "1.4.26",
   "homepage": "https://github.com/mybios/pinus",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus lib/"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "bugs": {
     "url": "https://github.com/mybios/pinus/issues"
@@ -49,19 +49,19 @@
   "dependencies": {
     "async": "^3.0.0",
     "cliff": "^0.1.10",
-    "commander": "^3.0.0",
+    "commander": "^7",
     "crc": "^3.5.0",
     "eyes": "^0.1.8",
     "mkdirp": "^0.5.1",
     "mqtt-connection": "^4.0.0",
     "node-bignumber": "^1.2.1",
-    "pinusmod-admin": "^1.4.25",
-    "pinusmod-loader": "^1.4.25",
-    "pinusmod-logger": "^1.4.25",
-    "pinusmod-protobuf": "^1.4.25",
-    "pinusmod-protocol": "^1.4.25",
-    "pinusmod-rpc": "^1.4.25",
-    "pinusmod-scheduler": "^1.4.25",
+    "pinusmod-admin": "^1.4.26",
+    "pinusmod-loader": "^1.4.26",
+    "pinusmod-logger": "^1.4.26",
+    "pinusmod-protobuf": "^1.4.26",
+    "pinusmod-protocol": "^1.4.26",
+    "pinusmod-rpc": "^1.4.26",
+    "pinusmod-scheduler": "^1.4.26",
     "seq-queue": "^0.0.5",
     "socket.io": "^2.3.0",
     "ws": "^7.0.0"

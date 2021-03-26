@@ -1,6 +1,6 @@
 {
  "name": "pinusmod-protocol",
- "version": "1.4.25",
+ "version": "1.4.26",
  "private": false,
  "main": "./dist",
  "types": "./lib/index",
@@ -21,10 +21,10 @@
   "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-protocol lib/"
  },
  "engines": {
-  "node": ">=10"
+  "node": ">=14"
  },
  "devDependencies": {
-  "@types/node": "^10",
+  "@types/node": "^14",
   "jscoverage": "0.6.0",
   "mocha": "6.2.2",
   "should": "13.2.3",

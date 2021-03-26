@@ -73,7 +73,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
         }
         let self = this;
 
-        this.socket.send(msg, {binary: true}, (err) => {
+        this.socket.send(msg, 'binary', (err) => {
             if (!!err) {
                 logger.error('websocket send binary data failed: %j', err.stack);
                 return;
@@ -118,7 +118,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
         if (this.state === ST_CLOSED) {
             return;
         }
-        this.socket.send(msg, {binary: true});
+        this.socket.send(msg, 'binary');
     }
 
     /**
@@ -131,7 +131,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
             return;
         }
 
-        this.socket.send(resp, {binary: true});
+        this.socket.send(resp, 'binary');
         this.state = ST_WAIT_ACK;
     }
 

@@ -2,8 +2,6 @@ import {TCPMailBox} from '../lib/rpc-client/mailboxes/tcp-mailbox';
 
 require('source-map-support/register');
 
-import {preload} from './preload';
-preload();
 import * as pinusrpc from '..';
 import {configure} from 'pinusmod-logger';
 import {getLogger} from 'pinusmod-logger';

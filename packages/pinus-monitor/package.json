@@ -1,7 +1,7 @@
 {
  "name": "pinusmod-monitor",
  "description": "monitor the operating-system and process information",
- "version": "1.4.25",
+ "version": "1.4.26",
  "main": "./dist/index",
  "types": "./lib/index",
  "files": [
@@ -23,10 +23,10 @@
   "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-monitor lib/"
  },
  "engines": {
-  "node": ">=10"
+  "node": ">=14"
  },
  "devDependencies": {
-  "@types/node": "^10",
+  "@types/node": "^14",
   "tslint": "5.20.1",
   "typescript": "3.7.3"
  }

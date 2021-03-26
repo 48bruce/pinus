@@ -5,5 +5,5 @@ export interface IHybridSocket {
     on(evt: 'message', listener: (msg: any) => void): void;
     emit(evt: 'close'): void;
     close(): void;
-    send(msg: any, options?: { binary?: boolean }, listener?: (err?: Error) => void): void;
+    send(msg: any, options?: BufferEncoding, listener?: (err?: Error) => void): void;
 }

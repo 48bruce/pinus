@@ -1,6 +1,6 @@
 {
 	"name": "pinusmod-scheduler",
-	"version": "1.4.25",
+	"version": "1.4.26",
 	"author": "mybios <mybios@qq.com>",
 	"main": "./dist/schedule",
 	"types": "./lib/schedule",
@@ -20,13 +20,13 @@
 		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-scheduler lib/"
 	},
 	"engines": {
-		"node": ">=10"
+		"node": ">=14"
 	},
 	"dependencies": {
-		"pinusmod-logger": "^1.4.25"
+		"pinusmod-logger": "^1.4.26"
 	},
 	"devDependencies": {
-		"@types/node": "^10",
+		"@types/node": "^14",
 		"tslint": "5.20.1",
 		"typescript": "3.7.3"
 	}

@@ -1,6 +1,4 @@
 require('source-map-support/register');
-import {preload} from './preload';
-preload();
 import {createServer, createTcpAcceptor} from '../index';
 import { configure } from 'pinusmod-logger';
 import {getLogger} from 'pinusmod-logger';

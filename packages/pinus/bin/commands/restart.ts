@@ -13,7 +13,7 @@ export default function (program: program.CommanderStatic) {
     .option('-u, --username <username>', 'administration user name', DEFAULT_USERNAME)
     .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
     .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
-    .option('-P, --port <master-port>', 'master server port', DEFAULT_MASTER_PORT)
+    .option('-P, --port <master-port>', 'master server port', DEFAULT_MASTER_PORT + '')
     .option('-t, --type <server-type>,', 'start server type')
     .option('-i, --id <server-id>', 'start server id')
     .action(function (opts) {
