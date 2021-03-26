@@ -21,7 +21,7 @@
         "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-admin lib/"
     },
     "engines": {
-        "node": ">=8.5"
+        "node": ">=10"
     },
     "dependencies": {
         "mqtt-connection": "^3.2.0",
@@ -32,7 +32,7 @@
     },
     "devDependencies": {
         "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
-        "@types/node": "8.10.54",
+        "@types/node": "^10",
         "mocha": "6.2.2",
         "should": "13.2.3",
         "tslint": "5.20.1",

@@ -20,13 +20,13 @@
         "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-logger lib/"
     },
     "engines": {
-        "node": ">=8.5"
+        "node": ">=10"
     },
     "dependencies": {
         "log4js": "^6.0.0"
     },
     "devDependencies": {
-        "@types/node": "8.10.54",
+        "@types/node": "14",
         "mocha": "6.2.2",
         "should": "13.2.3",
         "tslint": "5.20.1",

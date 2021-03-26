@@ -18,7 +18,7 @@
     "author": "bruce48x",
     "license": "MIT",
     "dependencies": {
-        "node-kcp-x": "^0.2",
+        "node-kcp-x": "^1.0",
         "pinusmod": "^1.4.24",
         "pinusmod-protobuf": "^1.4.21",
         "pinusmod-protocol": "^1.4.21"
@@ -27,7 +27,7 @@
         "@types/async": "^3.2.3",
         "@types/crc": "^3.4.0",
         "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
-        "@types/node": "^8.10.51",
+        "@types/node": "^10",
         "@types/socket.io": "^2.1.8",
         "@types/uuid": "^8.0.0",
         "@types/ws": "^7.2.6",

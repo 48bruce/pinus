@@ -1,5 +1,5 @@
 {
-  "name": "pinusmod-base-plugin",
+  "name": "pinusmod-k8s-plugin",
   "version": "1.4.24",
   "description": "pinus base plugin",
   "files": [
@@ -7,9 +7,10 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && yarn format && yarn lint && tsc",
+    "format": "prettier --write \"**/*.ts\"",
+    "lint": "eslint \"**/*.ts\" --fix",
     "start": "yarn run build && node dist/index",
-    "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json src/**/*.ts",
     "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json src/**/*.ts --fix",
     "test": "yarn run build",
     "cov": "nyc mocha",
@@ -26,7 +27,6 @@
   },
   "devDependencies": {
     "@types/node": "^10",
-    "tslint": "5.20.1",
     "typescript": "3.7.3"
   },
   "license": "MIT"

@@ -18,7 +18,7 @@
     "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus lib/"
   },
   "engines": {
-    "node": ">=8.5"
+    "node": ">=10"
   },
   "bugs": {
     "url": "https://github.com/mybios/pinus/issues"
