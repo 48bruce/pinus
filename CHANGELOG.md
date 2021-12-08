@@ -1,5 +1,32 @@
 
-#### 1.4.x 
+### 1.4.x
+
+[pinus-logger] fix: 已知 logger 存在内存泄漏的问题 [#167](https://github.com/node-pinus/pinus/issues/167)
+
+
+
+#### 1.4.12
+
+[pinus-robot-plugin] [Update PinusWSClient.ts 打开服务器消息回调调用的注释](https://github.com/node-pinus/pinus/issues/158)
+
+[pinus-robot-plugin] [修改机器人中对protobuf嵌套类型的解析,打开机器人对服务器推送的监听](https://github.com/node-pinus/pinus/issues/159)
+
+[pinus]: template tsconfig.json 配置调整.
+
+[pinus]: template remove skip lib check.
+
+[examples]: cron 示例
+
+Bump elliptic from 6.5.3 to 6.5.4
+
+Bump y18n from 3.2.1 to 3.2.2
+
+
+
+
+
+
+#### 1.4.11 
 
 [template] [添加了打包时对配置文件的复制处理](https://github.com/node-pinus/pinus/pull/138)
 
@@ -17,6 +44,15 @@ export interface DictionaryComponentOptions {
     ignoreAutoRouter?: boolean;
 }
 ```
+
+
+[pinus-rpc]  [origin基本是Error或其它扩展过的Error对象，cloneError会导致message等其它信息丢失](https://github.com/whtiehack/pinus/issues/141)
+
+[examples] : component 示例.
+
+[pinus] [fix for lower typescript version.](https://github.com/node-pinus/pinus/commit/9e54887cfd8c863d66b9c3ec23f9cfd5833211cf)
+
+[all] [统一跨平台下编译文件的换行符"LF"](https://github.com/whtiehack/pinus/issues/152)
 
 
 

@@ -121,7 +121,8 @@ export class Protobuf {
 
     decodeStr(key: string, str: string, code: BufferEncoding) {
         code = code || 'base64';
-        let buffer = Buffer.from(str, code);
+        let buffer = Buffer.from(str, code as BufferEncoding);
+
         return !!buffer ? this.decode(key, buffer) : buffer;
     }
 

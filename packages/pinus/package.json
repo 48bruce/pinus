@@ -1,10 +1,11 @@
 {
   "name": "pinusmod",
   "version": "1.4.26",
-  "homepage": "https://github.com/mybios/pinus",
+  "private": false,
+  "homepage": "https://github.com/node-pinus/pinus",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mybios/pinus.git"
+    "url": "git@github.com:node-pinus/pinus.git"
   },
   "scripts": {
     "build": "tsc",
@@ -21,12 +22,13 @@
     "node": ">=14"
   },
   "bugs": {
-    "url": "https://github.com/mybios/pinus/issues"
+    "url": "https://github.com/node-pinus/pinus/issues"
   },
+  "author": "mybios",
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/mybios/pinus#license"
+      "url": "https://github.com/node-pinus/pinus#license"
     }
   ],
   "keywords": [
@@ -49,11 +51,11 @@
   "dependencies": {
     "async": "^3.0.0",
     "cliff": "^0.1.10",
-    "commander": "^7",
+    "commander": "^8.0.0",
     "crc": "^3.5.0",
     "eyes": "^0.1.8",
-    "mkdirp": "^0.5.1",
-    "mqtt-connection": "^4.0.0",
+    "mkdirp": "^1.0.4",
+    "mqtt-connection": "^4.1.0",
     "node-bignumber": "^1.2.1",
     "pinusmod-admin": "^1.4.26",
     "pinusmod-loader": "^1.4.26",
@@ -63,28 +65,28 @@
     "pinusmod-rpc": "^1.4.26",
     "pinusmod-scheduler": "^1.4.26",
     "seq-queue": "^0.0.5",
-    "socket.io": "^2.3.0",
+    "socket.io": "^4.1.3",
     "ws": "^7.0.0"
   },
   "bin": {
     "pinusmod": "./dist/bin/pinus.js"
   },
   "devDependencies": {
-    "@types/async": "3.0.3",
-    "@types/cliff": "0.1.4",
+    "@types/async": "3.2.8",
+    "@types/cliff": "0.1.6",
     "@types/commander": "2.12.2",
     "@types/crc": "3.4.0",
-    "@types/eyes": "0.1.31",
-    "@types/mkdirp": "0.5.2",
+    "@types/eyes": "0.1.32",
+    "@types/mkdirp": "1.0.2",
     "@types/mocha": "^5.0.0",
     "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
     "@types/socket.io": "^2.1.4",
-    "@types/ws": "6.0.4",
+    "@types/ws": "7.4.6",
     "mocha": "6.2.2",
     "muk": "0.5.3",
-    "nyc": "14.1.1",
+    "nyc": "15.1.0",
     "should": "13.2.3",
-    "tslint": "5.20.1",
-    "typescript": "3.7.3"
+    "tslint": "6.1.3",
+    "typescript": "^4.3.5"
   }
 }

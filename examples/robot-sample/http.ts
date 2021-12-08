@@ -1,3 +1,4 @@
+import cluster from 'cluster';
 import * as http from 'http';
 let envConfig = require('./app/config/env.json');
 let config = require('./app/config/' + envConfig.env + '/config');

@@ -150,8 +150,8 @@ let requireUncached = function (module: string) {
     if (isUseContainer()) {
         let m = require.cache[require.resolve(module)];
         if (m) {
-            if (typeof m.exports === 'function') {
-                removeFromContainer(m.exports);
+            if (typeof m.exports['default'] === 'function') {
+                removeFromContainer(m.exports['default']);
             }
         }
     }

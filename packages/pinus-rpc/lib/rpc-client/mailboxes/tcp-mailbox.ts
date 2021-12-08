@@ -71,10 +71,10 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             return;
         }
 
-        this.socket = net.connect(<any>{
-            port: this.port,
-            host: this.host
-        }, () => {
+        this.socket = net.connect(
+            this.port,
+            this.host
+        , () => {
             // success to connect
             this.connected = true;
             this.closed = false;
