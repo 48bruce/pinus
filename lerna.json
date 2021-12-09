@@ -13,7 +13,7 @@
     "tools/*",
     "plugins/*"
   ],
-  "version": "1.4.26",
+  "version": "1.4.27",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

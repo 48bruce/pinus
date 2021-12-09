@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-robot",
-  "version": "1.4.26",
+  "version": "1.4.27",
   "private": false,
   "dependencies": {
     "cliff": "^0.1.10",
