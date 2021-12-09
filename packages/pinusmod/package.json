@@ -66,7 +66,7 @@
     "pinusmod-scheduler": "^1.4.26",
     "seq-queue": "^0.0.5",
     "socket.io": "^4.1.3",
-    "ws": "^7.0.0"
+    "ws": "^8.3.0"
   },
   "bin": {
     "pinusmod": "./dist/bin/pinus.js"
