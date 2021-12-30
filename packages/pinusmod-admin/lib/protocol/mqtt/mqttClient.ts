@@ -6,7 +6,7 @@ import * as net from 'net';
 import * as path from 'path';
 import { MqttConnection, MqttConnectionConstructor } from './mqttConnectorDefine';
 const MqttCon: MqttConnectionConstructor = require('mqtt-connection');
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 export interface MqttClientOpts {
     id: string;
     reconnectDelayMax ?: number;

@@ -2,7 +2,7 @@ import { getLogger } from 'pinusmod-logger';
 import * as utils from '../util/utils';
 
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 
 let profiler: any = null;
 try {

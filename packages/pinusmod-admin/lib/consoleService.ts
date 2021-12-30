@@ -8,7 +8,7 @@ import * as utils from './util/utils';
 import * as util from 'util';
 import { AdminServerInfo, ServerInfo, AdminUserInfo, Callback } from './util/constants';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 
 let MS_OF_SECOND = 1000;
 

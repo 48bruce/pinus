@@ -4,7 +4,7 @@
 import { Job } from './job';
 import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
-let logger = getLogger('pinus-scheduler', path.basename(__filename));
+let logger = getLogger('pinusmod-scheduler', path.basename(__filename));
 
 let SECOND = 0;
 let MIN = 1;

@@ -135,7 +135,7 @@ let getFileName = function (fp: string, suffixLength: number) {
     return fn;
 };
 const clearRequireCache = function (path: string) {
-    const moduleObj = require.cache[path];
+    const moduleObj: NodeModule = require.cache[path];
     if (!moduleObj) {
         return;
     }

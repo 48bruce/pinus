@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'Coder');
+let logger = getLogger('pinusmod-rpc', 'Coder');
 import * as OutBuffer from './buffer/outputBuffer';
 import * as InBuffer from './buffer/inputBuffer';
 // import * as bBuffer from 'bearcat-buffer';

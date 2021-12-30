@@ -52,7 +52,7 @@ export class Protobuf {
     }
 
     normalizeRoute(route: string): string {
-        return route && route.split('.').join('');
+        return route && route.split('.').join('_');
     }
 
     check(type: 'server' | 'client', route: string): any {

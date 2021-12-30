@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'blackhole');
+let logger = getLogger('pinusmod-rpc', 'blackhole');
 import { EventEmitter } from 'events';
 import * as utils from '../../util/utils';
 import { Tracer } from '../../util/tracer';

@@ -3,7 +3,7 @@ import {createServer, createTcpAcceptor} from '../index';
 import { configure } from 'pinusmod-logger';
 import {getLogger} from 'pinusmod-logger';
 // configure('./config/log4js.json');
-let logger = getLogger('pinus-rpc', 'sample-server');
+let logger = getLogger('pinusmod-rpc', 'sample-server');
 
 // remote service path info list
 let paths = [

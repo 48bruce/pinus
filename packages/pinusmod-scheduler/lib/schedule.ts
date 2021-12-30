@@ -8,7 +8,7 @@ import { SimpleTriggerOpts } from './simpleTrigger';
 
 import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
-let logger = getLogger('pinus-scheduler', path.basename(__filename));
+let logger = getLogger('pinusmod-scheduler', path.basename(__filename));
 
 let timerCount = 0;
 let map: {[key: number]: Job.Job} = {};

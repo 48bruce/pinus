@@ -1,6 +1,6 @@
 import * as WebSocket from 'ws';
-import {Package, Message, Protocol} from 'pinus-protocol';
-import {Protobuf} from 'pinus-protobuf';
+import {Package, Message, Protocol} from 'pinusmod-protocol';
+import {Protobuf} from 'pinusmod-protobuf';
 import {EventEmitter} from 'events';
 import {cacheClass} from "./cacheClass";
 import { MyLogger } from "./my.logger";

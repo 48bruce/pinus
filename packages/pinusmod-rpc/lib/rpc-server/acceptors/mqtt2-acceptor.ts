@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'mqtt2-acceptor');
+let logger = getLogger('pinusmod-rpc', 'mqtt2-acceptor');
 import { EventEmitter } from 'events';
 import {constants} from '../../util/constants';
 import { Tracer } from '../../util/tracer';

@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'ws-mailbox');
+let logger = getLogger('pinusmod-rpc', 'ws-mailbox');
 import { EventEmitter } from 'events';
 import { constants } from '../../util/constants';
 import { Tracer } from '../../util/tracer';

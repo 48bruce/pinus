@@ -9,7 +9,7 @@ import { ConsoleService } from '../consoleService';
 import { ServerInfo, AdminUserInfo, AdminServerInfo, Callback } from '../util/constants';
 import * as path from 'path';
 import { MqttConnection } from '../protocol/mqtt/mqttConnectorDefine';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 
 let ST_INITED = 1;
 let ST_STARTED = 2;

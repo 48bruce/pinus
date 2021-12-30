@@ -4,7 +4,7 @@ import * as Util from 'util';
 import * as net from 'net';
 import * as path from 'path';
 import { MqttConnection, MqttConnectionConstructor } from './mqttConnectorDefine';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 const mqtt_constructor: MqttConnectionConstructor = require('mqtt-connection');
 
 export interface MqttSocket extends MqttConnection {

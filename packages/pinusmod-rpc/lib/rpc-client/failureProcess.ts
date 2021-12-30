@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'failprocess');
+let logger = getLogger('pinusmod-rpc', 'failprocess');
 import { constants } from '../util/constants';
 import * as utils from '../util/utils';
 

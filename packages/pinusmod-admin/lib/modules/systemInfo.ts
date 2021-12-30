@@ -9,7 +9,7 @@ import { IModule, ModuleType, MonitorCallback, MasterCallback } from '../console
 import { MonitorAgent } from '../monitor/monitorAgent';
 import { MasterAgent } from '../master/masterAgent';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 
 let DEFAULT_INTERVAL = 5 * 60;        // in second
 let DEFAULT_DELAY = 10;                        // in second

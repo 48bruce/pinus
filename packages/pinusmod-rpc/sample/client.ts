@@ -7,7 +7,7 @@ import {configure} from 'pinusmod-logger';
 import {getLogger} from 'pinusmod-logger';
 import {createTcpMailBox} from '../';
 // configure('./config/log4js.json');
-let logger = getLogger('pinus-rpc', 'sample-client');
+let logger = getLogger('pinusmod-rpc', 'sample-client');
 
 // remote service interface path info list
 const records = [

@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', 'InputBuffer');
+let logger = getLogger('pinusmod-rpc', 'InputBuffer');
 import * as Utils from '../utils';
 
 export class InputBuffer {

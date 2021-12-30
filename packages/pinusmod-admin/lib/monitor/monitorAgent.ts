@@ -7,7 +7,7 @@ import * as Util from 'util';
 import { ServerInfo, AdminServerInfo, Callback } from '../util/constants';
 import { ConsoleService } from '../consoleService';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('pinusmod-admin', path.basename(__filename));
 
 let ST_INITED = 1;
 let ST_CONNECTED = 2;

@@ -12,7 +12,7 @@ import * as async from 'async';
 import { ConsistentHash } from '../util/consistentHash';
 import { RemoteServerCode } from '../../index';
 
-let logger = getLogger('pinus-rpc', 'rpc-client');
+let logger = getLogger('pinusmod-rpc', 'rpc-client');
 
 /**
  * Client states

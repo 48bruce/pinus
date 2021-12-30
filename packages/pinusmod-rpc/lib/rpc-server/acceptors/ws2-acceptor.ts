@@ -4,7 +4,7 @@ import * as utils from '../../util/utils';
 import * as ws from 'ws';
 import * as zlib from 'zlib';
 import { getLogger } from 'pinusmod-logger';
-let logger = getLogger('pinus-rpc', __filename);
+let logger = getLogger('pinusmod-rpc', __filename);
 import { Tracer } from '../../util/tracer';
 import * as Coder from '../../util/coder';
 
