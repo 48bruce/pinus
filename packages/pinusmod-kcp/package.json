@@ -27,7 +27,7 @@
         "@types/async": "^3.2.3",
         "@types/crc": "^3.4.0",
         "@types/mqtt-connection": "git+https://gitee.com/xxbruce/types-mqtt-connection.git",
-        "@types/node": "^14",
+        "@types/node": "^17",
         "@types/uuid": "^8.0.0",
         "@types/ws": "^7.2.6",
         "typescript": "^3.9.6"
