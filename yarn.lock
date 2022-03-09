@@ -6938,9 +6938,9 @@ node-gyp@^7.1.0:
     which "^2.0.2"
 
 node-kcp-x@^1.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/node-kcp-x/download/node-kcp-x-1.0.0.tgz#496f81de09b7e91cdb3ec224d7e9e8871a230ef2"
-  integrity sha1-SW+B3gm36RzbPsIk1+nohxojDvI=
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.1.tgz#a9a86937624ffda35d21b637962787589516bbd2"
+  integrity sha512-TIGlJIlMSHwYmnxjJ9NZnTQA5iXrIzA3ekJvQ09TH1Xy+7JZOLB4AjvhzXX1zWIxNET2VScXWwesAtrPdB7l2w==
   dependencies:
     nan "^2.14.0"
 
