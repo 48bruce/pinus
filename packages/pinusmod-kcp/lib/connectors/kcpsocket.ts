@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import * as path from 'path';
+import { getLogger } from 'pinusmod-logger';
+let logger = getLogger('pinus', path.basename(__filename));
 import { EventEmitter } from 'events';
 import * as kcp from 'node-kcp-x';
 import * as pinuscoder from './pinuscoder';
@@ -23,7 +25,7 @@ import * as dgram from 'dgram';
 import { ISocket } from '../interfaces/ISocket';
 import { NetState } from '../const/const';
 
-var output = function (data: any, size: number, thiz: any) {
+function output(data: any, size: number, thiz: KcpSocket) {
     thiz.socket.send(data, 0, size, thiz.port, thiz.host);
 };
 
@@ -50,21 +52,21 @@ export class KcpSocket extends EventEmitter implements ISocket {
             port: this.port
         };
         this.opts = opts;
-        var conv = opts.conv || 123;
+        const conv = opts.conv || 123;
         this.kcpObj = new kcp.KCP(conv, this);
         if (!!opts) {
             this.heartbeatOnData = !!opts.heartbeatOnData;
-            var nodelay = opts.nodelay || 0;
-            var interval = opts.interval || 100;
-            var resend = opts.resend || 0;
-            var nc = opts.nc || 0;
+            const nodelay = opts.nodelay || 0;
+            const interval = opts.interval || 100;
+            const resend = opts.resend || 0;
+            const nc = opts.nc || 0;
             this.kcpObj.nodelay(nodelay, interval, resend, nc);
 
-            var sndwnd = opts.sndwnd || 32;
-            var rcvwnd = opts.rcvwnd || sndwnd;
+            const sndwnd = opts.sndwnd || 32;
+            const rcvwnd = opts.rcvwnd || sndwnd;
             this.kcpObj.wndsize(sndwnd, rcvwnd);
 
-            var mtu = opts.mtu || 1400;
+            const mtu = opts.mtu || 1400;
             this.kcpObj.setmtu(mtu);
         }
         this.kcpObj.output(output);
@@ -73,10 +75,9 @@ export class KcpSocket extends EventEmitter implements ISocket {
                 return;
             }
             this.kcpObj.input(msg);
-            var data = this.kcpObj.recv();
-            if (!!data) {
-                pinuscoder.handlePackage(this, data);
-            }
+            const data = this.kcpObj.recv();
+            console.log('kcp recv() 结果', data);
+            pinuscoder.handlePackage(this, data);
         });
 
         this.check();
@@ -132,8 +133,8 @@ export class KcpSocket extends EventEmitter implements ISocket {
         if (this.state != NetState.WORKING) {
             return;
         }
-        var rs = [];
-        for (var i = 0; i < msgs.length; i++) {
+        const rs = [];
+        for (let i = 0; i < msgs.length; i++) {
             rs.push(Package.encode(Package.TYPE_DATA, msgs[i]));
         }
         this.sendRaw(Buffer.concat(rs));

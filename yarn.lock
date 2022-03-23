@@ -1143,6 +1143,18 @@
   resolved "https://registry.npm.taobao.org/@protobufjs/utf8/download/@protobufjs/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@ronomon/queue@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ronomon/queue/-/queue-3.0.1.tgz#42613e8488289ad452f4cf2244064958fc08d370"
+  integrity sha512-STcqSvk+c7ArMrZgYxhM92p6O6F7t0SUbGr+zm8s9fJple5EdJAMwP3dXqgdXeF95xWhBpha5kjEqNAIdI0r4w==
+
+"@ronomon/reed-solomon@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ronomon/reed-solomon/-/reed-solomon-6.0.0.tgz#d14b450458c550ba77ae9e08e8344e1cf9d5f738"
+  integrity sha512-Tb2mRSQaNQBt11tsHeIR8Pjc/Or3TwtgWb+ta1sf9tPmyCUg4D1p1AUq5X1VNir/FtTvhYVd3qtNpmQcBVktfg==
+  dependencies:
+    "@ronomon/queue" "^3.0.1"
+
 "@socket.io/component-emitter@~3.0.0":
   version "3.0.0"
   resolved "https://registry.npmmirror.com/@socket.io/component-emitter/download/@socket.io/component-emitter-3.0.0.tgz#8863915676f837d9dad7b76f50cb500c1e9422e9"
@@ -5859,6 +5871,11 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
+kcpjs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.1.tgz#8da33b1ad6d77daa929ff46d5dfe072a927e2278"
+  integrity sha512-/ZTSdnTh0HtZTwz0qhY0hM9Nm7u7aTfSXqUbbXKx3Drd+WP8a7KLePxp5syftKTLHb6p4/fiYogKrZkBMC48WQ==
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.npm.taobao.org/kind-of/download/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -6937,10 +6954,10 @@ node-gyp@^7.1.0:
     tar "^6.0.2"
     which "^2.0.2"
 
-node-kcp-x@^1.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/node-kcp-x/download/node-kcp-x-1.0.0.tgz#496f81de09b7e91cdb3ec224d7e9e8871a230ef2"
-  integrity sha1-SW+B3gm36RzbPsIk1+nohxojDvI=
+node-kcp-x@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.1.tgz#a9a86937624ffda35d21b637962787589516bbd2"
+  integrity sha512-TIGlJIlMSHwYmnxjJ9NZnTQA5iXrIzA3ekJvQ09TH1Xy+7JZOLB4AjvhzXX1zWIxNET2VScXWwesAtrPdB7l2w==
   dependencies:
     nan "^2.14.0"
 
@@ -9768,11 +9785,6 @@ typedoc@0.21.4:
     progress "^2.0.3"
     shiki "^0.9.3"
     typedoc-default-themes "^0.12.10"
-
-typescript@^3.9.6:
-  version "3.9.10"
-  resolved "https://registry.npmmirror.com/typescript/download/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
-  integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
 typescript@^4.3.5:
   version "4.5.2"

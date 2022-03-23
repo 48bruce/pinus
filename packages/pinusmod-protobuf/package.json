@@ -12,7 +12,7 @@
     "test"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist/* && tsc",
     "start": "yarn run build && node dist/index",
     "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts",
     "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",

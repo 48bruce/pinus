@@ -71,12 +71,12 @@ export class Connector extends EventEmitter {
     bindSocket(socket: dgram.Socket, address: string, port: number, msg?: any) {
         let conv, kcpsocket: KcpSocket | undefined;
         if (msg) {
-            var kcpHead = pinuscoder.kcpHeadDecode(msg);
+            const kcpHead = pinuscoder.kcpHeadDecode(msg);
             conv = kcpHead.conv;
             kcpsocket = this.clientsForKcp[conv];
         }
         if (!kcpsocket && conv) {
-            kcpsocket = new KcpSocket(curId++, socket, address, port, Object.assign({ conv: conv }, this.opts));
+            kcpsocket = new KcpSocket(curId++, socket, address, port, Object.assign({ conv }, this.opts));
             pinuscoder.setupHandler(this, kcpsocket, this.opts);
             this.clientsForKcp[conv] = kcpsocket;
             this.emit('connection', kcpsocket);

@@ -18,3 +18,4 @@ packages/pinus/test/config/servers.json
 packages/pinus/test/config/master.json
 packages/pinus/test/config/log4js.json
 packages/package.json
+!.npmignore

@@ -55,15 +55,20 @@ export const setupHandler = function (connector: any, socket: any, opts: any) {
 };
 
 export const handlePackage = function (socket: any, pkg: any) {
+    if (!pkg) {
+        return;
+    }
     pkg = Package.decode(pkg);
     if (pkg.type == 6) {
         return;
     }
     if (Array.isArray(pkg)) {
         for (let p in pkg) {
+            console.log('pinus 的 package', pkg[p]);
             handler(socket, pkg[p]);
         }
     } else {
+        console.log('pinus 的 package', pkg);
         handler(socket, pkg);
     }
 };
