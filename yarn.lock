@@ -5871,10 +5871,12 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-kcpjs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.1.tgz#8da33b1ad6d77daa929ff46d5dfe072a927e2278"
-  integrity sha512-/ZTSdnTh0HtZTwz0qhY0hM9Nm7u7aTfSXqUbbXKx3Drd+WP8a7KLePxp5syftKTLHb6p4/fiYogKrZkBMC48WQ==
+kcpjs@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.3.tgz#da2bbe23e2005117d1b5b7969a28c97595a5349f"
+  integrity sha512-WQD8L8D3Qg9/hidhQeimC5GUC74FZU9ZW9qzktjhyQAtjcgBLZ0dsVJxxzecnD9vgT+XaBDnadwcMa7DJLjOpw==
+  dependencies:
+    "@ronomon/reed-solomon" "^6.0.0"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
