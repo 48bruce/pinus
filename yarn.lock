@@ -2256,7 +2256,7 @@ buffer-from@^1.0.0:
   resolved "https://registry.nlark.com/buffer-from/download/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha1-KxRqb9cugLT1XSVfNe1Zo6mkG9U=
 
-buffer@^5.1.0, buffer@^5.5.0:
+buffer@^5.5.0:
   version "5.7.1"
   resolved "https://registry.nlark.com/buffer/download/buffer-5.7.1.tgz#ba62e7c13133053582197160851a8f648e99eed0"
   integrity sha1-umLnwTEzBTWCGXFghRqPZI6Z7tA=
@@ -3074,12 +3074,10 @@ cpy@^5.0.0:
     globby "^6.0.0"
     nested-error-stacks "^2.0.0"
 
-crc@^3.5.0, crc@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.npmmirror.com/crc/download/crc-3.8.0.tgz#ad60269c2c856f8c299e2c4cc0de4556914056c6"
-  integrity sha1-rWAmnCyFb4wpnixMwN5FVpFAVsY=
-  dependencies:
-    buffer "^5.1.0"
+crc@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/crc/-/crc-4.1.0.tgz#bb875159ac3012d52611f13a2bcf5d46b401c8e7"
+  integrity sha512-xl6/PgOWZCDOA9mnytKzg2ftRS2YT/SUnNPPiCMoD6KWuiJayRjHcaLmBzGWNZGHSXDSrDuLNUEIljLRMbn7vA==
 
 cross-spawn@^4, cross-spawn@^4.0.0:
   version "4.0.2"
@@ -5871,10 +5869,12 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-kcpjs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.1.tgz#8da33b1ad6d77daa929ff46d5dfe072a927e2278"
-  integrity sha512-/ZTSdnTh0HtZTwz0qhY0hM9Nm7u7aTfSXqUbbXKx3Drd+WP8a7KLePxp5syftKTLHb6p4/fiYogKrZkBMC48WQ==
+kcpjs@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.3.tgz#da2bbe23e2005117d1b5b7969a28c97595a5349f"
+  integrity sha512-WQD8L8D3Qg9/hidhQeimC5GUC74FZU9ZW9qzktjhyQAtjcgBLZ0dsVJxxzecnD9vgT+XaBDnadwcMa7DJLjOpw==
+  dependencies:
+    "@ronomon/reed-solomon" "^6.0.0"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
