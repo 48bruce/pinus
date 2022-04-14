@@ -1290,20 +1290,10 @@
   dependencies:
     "@types/node" "^8.5.2"
 
-"@types/node@*", "@types/node@>=10.0.0", "@types/node@^16":
-  version "16.11.12"
-  resolved "https://registry.npmmirror.com/@types/node/download/@types/node-16.11.12.tgz#ac7fb693ac587ee182c3780c26eb65546a1a3c10"
-  integrity sha512-+2Iggwg7PxoO5Kyhvsq9VarmPbIelXP070HMImEpbtGCoyWNINQj4wzjbQCXzdHTRXnqufutJb5KAURZANNBAw==
-
-"@types/node@>=13.7.0":
-  version "17.0.5"
-  resolved "https://registry.npmmirror.com/@types/node/download/@types/node-17.0.5.tgz#57ca67ec4e57ad9e4ef5a6bab48a15387a1c83e0"
-  integrity sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==
-
-"@types/node@^14":
-  version "14.18.0"
-  resolved "https://registry.npmmirror.com/@types/node/download/@types/node-14.18.0.tgz#98df2397f6936bfbff4f089e40e06fa5dd88d32a"
-  integrity sha512-0GeIl2kmVMXEnx8tg1SlG6Gg8vkqirrW752KqolYo1PHevhhZN3bhJ67qHj+bQaINhX0Ra3TlWwRvMCd9iEfNQ==
+"@types/node@*", "@types/node@>=10.0.0", "@types/node@>=13.7.0", "@types/node@^17":
+  version "17.0.24"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.24.tgz#20ba1bf69c1b4ab405c7a01e950c4f446b05029f"
+  integrity sha512-aveCYRQbgTH9Pssp1voEP7HiuWlD2jW2BO56w+bVrJn04i61yh6mRfoKO6hEYQD9vF+W8Chkwc6j1M36uPkx4g==
 
 "@types/node@^8.5.2":
   version "8.10.66"
@@ -5871,10 +5861,12 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-kcpjs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.1.tgz#8da33b1ad6d77daa929ff46d5dfe072a927e2278"
-  integrity sha512-/ZTSdnTh0HtZTwz0qhY0hM9Nm7u7aTfSXqUbbXKx3Drd+WP8a7KLePxp5syftKTLHb6p4/fiYogKrZkBMC48WQ==
+kcpjs@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.3.tgz#da2bbe23e2005117d1b5b7969a28c97595a5349f"
+  integrity sha512-WQD8L8D3Qg9/hidhQeimC5GUC74FZU9ZW9qzktjhyQAtjcgBLZ0dsVJxxzecnD9vgT+XaBDnadwcMa7DJLjOpw==
+  dependencies:
+    "@ronomon/reed-solomon" "^6.0.0"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
