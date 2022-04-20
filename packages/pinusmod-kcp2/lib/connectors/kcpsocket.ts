@@ -71,8 +71,7 @@ export class KcpSocket extends EventEmitter implements ISocket {
         }
         const thiz = this;
         this.sess.on('recv', (buff: Buffer) => {
-        pinuscoder.handlePackage(thiz, buff);
-
+            pinuscoder.handlePackage(thiz, buff);
         });
 
         this.state = NetState.INITED;
@@ -120,7 +119,7 @@ export class KcpSocket extends EventEmitter implements ISocket {
         for (let i = 0; i < msgs.length; i++) {
             rs.push(Package.encode(Package.TYPE_DATA, msgs[i]));
         }
-        this.sendRaw(Buffer.concat(rs));
+        this.sess.writeBuffers(rs);
     }
 
     handshakeResponse(resp: Buffer) {

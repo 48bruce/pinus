@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-import { pinus } from 'pinusmod';
 import handler from '../common/handler';
 import * as Kick from '../commands/kick';
 import { HandshakeCommand } from '../commands/handshake';
 import { HeartbeatCommand } from '../commands/heartbeat';
-import * as coder from '../common/coder';
 import { Protocol, Package, Message } from 'pinusmod-protocol';
 import { Protobuf } from 'pinusmod-protobuf';
-
-import { IConnector } from '../interfaces/IConnector';
 import { ISocket } from '../interfaces/ISocket';
 
 const RES_OK = 200;
@@ -59,10 +55,8 @@ export const handlePackage = function (socket: ISocket, buff: Buffer) {
         return;
     }
     const pkg = Package.decode(buff);
-    console.log('decode pinus package', pkg);
     if (Array.isArray(pkg)) {
         for (let p in pkg) {
-            console.log('pinus 的 package', pkg[p]);
             if (pkg[p].type == 6) {
                 return;
             }
@@ -72,7 +66,6 @@ export const handlePackage = function (socket: ISocket, buff: Buffer) {
         if (pkg.type == 6) {
             return;
         }
-        console.log('pinus 的 package', pkg);
         handler(socket, pkg);
     }
 };

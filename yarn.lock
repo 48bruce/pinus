@@ -3074,6 +3074,11 @@ cpy@^5.0.0:
     globby "^6.0.0"
     nested-error-stacks "^2.0.0"
 
+crc-32@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/crc-32/-/crc-32-1.2.2.tgz#3cad35a934b8bf71f25ca524b6da51fb7eace2ff"
+  integrity sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==
+
 crc@^3.5.0, crc@^3.8.0:
   version "3.8.0"
   resolved "https://registry.npmmirror.com/crc/download/crc-3.8.0.tgz#ad60269c2c856f8c299e2c4cc0de4556914056c6"
@@ -5871,10 +5876,13 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-kcpjs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.1.tgz#8da33b1ad6d77daa929ff46d5dfe072a927e2278"
-  integrity sha512-/ZTSdnTh0HtZTwz0qhY0hM9Nm7u7aTfSXqUbbXKx3Drd+WP8a7KLePxp5syftKTLHb6p4/fiYogKrZkBMC48WQ==
+kcpjs@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.9.tgz#75060fe152b19bf24d77b7cdabfc44410dd89cf5"
+  integrity sha512-qiA5nuvay7EDsyPbI+iZHQ2+Qm64fSxpZ7SzGyfFFGhTFsQOwBhpFSDsuKz7kqwYMFPDxAY7MVlHYvew2xtiwA==
+  dependencies:
+    "@ronomon/reed-solomon" "^6.0.0"
+    crc-32 "^1.2.1"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"

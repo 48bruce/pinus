@@ -95,8 +95,8 @@ class PinusKcpClient extends EventEmitter {
         });
 
         // kcp 初始化
-        const { conv, port, host, dataShards, parityShards } = this.opts;
-        this.sess = DialWithOptions(conv, port, host, undefined, dataShards, parityShards);
+        const { conv, port, host, dataShards, parityShards, block } = this.opts;
+        this.sess = DialWithOptions({ conv, port, host, dataShards, parityShards, block });
         this.sess.on('recv', (buff) => {
             handlePackage(this, buff);
         });

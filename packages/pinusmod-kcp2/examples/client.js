@@ -1,13 +1,15 @@
 const { PinusKcpClient } = require('./pinusKcpClient');
+const { host, port, conv, dataShards, parityShards, block } = require('./common');
 
 (async function () {
     console.log('client started');
     const client = new PinusKcpClient({
-        host: '127.0.0.1',
-        port: 22334,
-        conv: 255,
-        dataShards: 4,
-        parityShards: 1,
+        host,
+        port,
+        conv,
+        dataShards,
+        parityShards,
+        block,
     });
     console.log('connecting');
     await client.connect();

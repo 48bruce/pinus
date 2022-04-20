@@ -12,32 +12,27 @@ pinus-kcp
 说明
 ============
 
-[pomelo-kcp](https://www.npmjs.com/package/pomelo-kcp) 的 TypeScript 版本
+基于 [kcpjs](https://www.npmjs.com/package/kcpjs) 实现的 pinus kcp connector
 
-结合 [Pinus](https://github.com/node-pinus/pinus) 使用
-
-====
-
-修改自 [pomelo-kcp](https://www.npmjs.com/package/pomelo-kcp)
-
-原本是所有连接共用一个 conv
-
-改为根据客户端发来的消息的 conv 创建对应的 kcpsocket 对象
-
-方便跟 tcp 连接相互配合着使用，参见 [kcp 的 wiki](https://github.com/skywind3000/kcp/wiki/Cooperate-With-Tcp-Server)
+相比于 pinusmod-kcp，这个版本额外提供了 fec前向纠错 和 加密 两个新特性
 
 ## 安装
 
 ```sh
-npm install pinus-kcp
+npm install pinusmod-kcp2
 ```
 
 ## 使用
 
 ```typescript
-import * as kcpconnector from 'pinus-kcp';
+import * as kcpconnector from 'pinusmod-kcp2';
+import { AesBlock } from 'kcpjs';
 
 app.configure('production|development', 'connector', function () {
+    const algorithm = 'aes-128-gcm';
+    const key = 'aabbccddeeffgghh';
+    const iv = 'aabbccddeeff';
+
     app.set('connectorConfig', {
         connector: kcpconnector.Connector,
         // kcp options
@@ -51,6 +46,9 @@ app.configure('production|development', 'connector', function () {
         // 每次处理 package 时都刷新心跳，避免收不到心跳包的情况下掉线的问题
         // 这个值默认是 false
         heartbeatOnData: true,  
+        dataShards: 8,
+        parityShards: 2,
+        block: new AesBlock(algorithm, key, iv),
     });
 });
 ```
@@ -59,7 +57,7 @@ app.configure('production|development', 'connector', function () {
 ### server
 ```sh
 lerna bootstrap
-cd packages/pinusmod-kcp/examples
+cd packages/pinusmod-kcp2/examples
 # 启动
 yarn runserver
 # 查看

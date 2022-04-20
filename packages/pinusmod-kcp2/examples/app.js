@@ -4,6 +4,7 @@ const path = require('path');
 const { getLogger } = require('pinusmod-logger');
 let logger = getLogger('pinus', path.basename(__filename));
 require('reflect-metadata');
+const { dataShards, parityShards, block } = require('./common');
 
 // 捕获普通异常
 process.on('uncaughtException', function (err) {
@@ -39,9 +40,9 @@ app.configure('all', 'connector', function () {
         useDict: false,
         useProtobuf: false,
         heartbeatOnData: false,
-        // fec
-        dataShards: 4,
-        parityShards: 1,
+        dataShards,
+        parityShards,
+        block,
     });
 });
 

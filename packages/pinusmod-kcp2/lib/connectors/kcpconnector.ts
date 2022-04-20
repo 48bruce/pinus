@@ -19,7 +19,7 @@ import { KcpSocket } from './kcpsocket';
 import * as pinuscoder from './pinuscoder';
 import { IConnector, DictionaryComponent, ProtobufComponent, IComponent, pinus } from 'pinusmod';
 import * as coder from '../common/coder';
-import { ListenWithOptions } from 'kcpjs';
+import { Listener, ListenWithOptions } from 'kcpjs';
 
 let curId = 1;
 
@@ -29,13 +29,12 @@ export class Connector extends EventEmitter {
     port: number;
     useDict: boolean;
     useProtobuf: boolean;
-    dataShards: number;
-    parityShards: number;
     clientsForKcp: { [conv: number]: KcpSocket };
     connector: IConnector;
     dictionary: DictionaryComponent;
     protobuf: ProtobufComponent;
     decodeIO_protobuf: IComponent;
+    listener: Listener;
 
     constructor(port: number, host: string, opts: any) {
         super();
@@ -44,8 +43,6 @@ export class Connector extends EventEmitter {
         this.port = port;
         this.useDict = opts.useDict;
         this.useProtobuf = opts.useProtobuf;
-        this.dataShards = opts.dataShards || 0;
-        this.parityShards = opts.parityShards || 0;
         this.clientsForKcp = {};
     }
 
@@ -57,43 +54,30 @@ export class Connector extends EventEmitter {
         this.decodeIO_protobuf = app.components.__decodeIO__protobuf__;
 
         this.on('disconnect', (kcpsocket) => {
+            this.listener.closeSession(kcpsocket.sess.key);
             const conv = kcpsocket.opts.conv;
             delete this.clientsForKcp[conv];
         });
 
-        ListenWithOptions(this.port, undefined, this.opts.dataShards, this.opts.parityShards, (sess) => {
-            const conv = sess.getConv();
-            let kcpsocket = this.clientsForKcp[conv];
-            if (!kcpsocket) {
-                kcpsocket = new KcpSocket(curId++, sess, '', 0, {...this.opts,conv});
-                pinuscoder.setupHandler(this, kcpsocket, this.opts);
-                this.clientsForKcp[conv] = kcpsocket;
-                this.emit('connection', kcpsocket);
-            } 
+        this.listener = ListenWithOptions({
+            port: this.port,
+            dataShards: this.opts.dataShards,
+            parityShards: this.opts.parityShards,
+            block: this.opts.block,
+            callback: (sess) => {
+                const conv = sess.getConv();
+                let kcpsocket = this.clientsForKcp[conv];
+                if (!kcpsocket) {
+                    kcpsocket = new KcpSocket(curId++, sess, '', 0, { ...this.opts, conv });
+                    pinuscoder.setupHandler(this, kcpsocket, this.opts);
+                    this.clientsForKcp[conv] = kcpsocket;
+                    this.emit('connection', kcpsocket);
+                }
+            },
         });
         process.nextTick(cb);
     }
-/*
-    bindSocket(socket: dgram.Socket, address: string, port: number, msg?: any) {
-        let conv, kcpsocket: KcpSocket | undefined;
-        const isFec = this.opts.dataShards && this.opts.parityShards;
-        const reserved = isFec ? fecHeaderSizePlus2 : 0;
-        if (msg) {
-            const kcpHead = pinuscoder.kcpHeadDecode(msg, reserved);
-            conv = kcpHead.conv;
-            kcpsocket = this.clientsForKcp[conv];
-        }
-        if (!kcpsocket && conv) {
-            kcpsocket = new KcpSocket(curId++, socket, address, port, Object.assign({ conv }, this.opts));
-            pinuscoder.setupHandler(this, kcpsocket, this.opts);
-            this.clientsForKcp[conv] = kcpsocket;
-            this.emit('connection', kcpsocket);
-        }
-        if (!!msg && !!kcpsocket) {
-            kcpsocket.emit('input', msg);
-        }
-    }
-*/
+
     static decode(msg: Buffer | string) {
         return coder.decode.bind(this)(msg);
     }
@@ -111,9 +95,7 @@ export class Connector extends EventEmitter {
     }
 
     stop(force: any, cb: () => void) {
-        // if (this.socket) {
-        //     this.socket.close();
-        // }
+        this.listener.close();
         process.nextTick(cb);
     }
 }
