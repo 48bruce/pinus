@@ -81,7 +81,7 @@
     "@types/mocha": "^5.0.0",
     "@types/mqtt-connection": "git+https://gitee.com/xxbruce/types-mqtt-connection.git",
     "@types/ws": "8.2.2",
-    "mocha": "9.1.3",
+    "mocha": "9.2.2",
     "muk": "0.5.3",
     "nyc": "15.1.0",
     "should": "13.2.3",
