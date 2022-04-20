@@ -1,7 +1,7 @@
 {
  "name": "pinusmod-monitor",
  "description": "monitor the operating-system and process information",
- "version": "1.4.26",
+ "version": "1.4.29",
  "main": "./dist/index",
  "types": "./lib/index",
  "files": [

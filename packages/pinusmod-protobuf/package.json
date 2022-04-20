@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-protobuf",
-  "version": "1.4.26",
+  "version": "1.4.29",
   "main": "./dist/protobuf",
   "types": "./lib/protobuf",
   "dependencies": {
