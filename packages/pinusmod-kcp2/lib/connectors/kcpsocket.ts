@@ -39,12 +39,12 @@ export class KcpSocket extends EventEmitter implements ISocket {
     parityShards: number;
     headerSize: number;
 
-    constructor(id: number, sess: UDPSession, address: string, port: number, opts: any) {
+    constructor(id: number, sess: UDPSession, opts: any) {
         super();
         this.id = id;
         this.sess = sess;
-        this.host = address;
-        this.port = port;
+        this.host = sess.host;
+        this.port = sess.port;
         this.remoteAddress = {
             ip: this.host,
             port: this.port
@@ -53,7 +53,6 @@ export class KcpSocket extends EventEmitter implements ISocket {
         const conv = opts.conv || 123;
 
         this.headerSize = 0;
-        console.log('new kcp', conv);
         if (!!opts) {
             this.heartbeatOnData = !!opts.heartbeatOnData;
             const nodelay = opts.nodelay || 0;

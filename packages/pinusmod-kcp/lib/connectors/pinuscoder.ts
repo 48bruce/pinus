@@ -64,11 +64,9 @@ export const handlePackage = function (socket: any, pkg: any) {
     }
     if (Array.isArray(pkg)) {
         for (let p in pkg) {
-            console.log('pinus 的 package', pkg[p]);
             handler(socket, pkg[p]);
         }
     } else {
-        console.log('pinus 的 package', pkg);
         handler(socket, pkg);
     }
 };

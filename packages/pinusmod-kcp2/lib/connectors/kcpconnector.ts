@@ -68,9 +68,9 @@ export class Connector extends EventEmitter {
                 const conv = sess.getConv();
                 let kcpsocket = this.clientsForKcp[conv];
                 if (!kcpsocket) {
-                    kcpsocket = new KcpSocket(curId++, sess, '', 0, { ...this.opts, conv });
-                    pinuscoder.setupHandler(this, kcpsocket, this.opts);
+                    kcpsocket = new KcpSocket(curId++, sess, { ...this.opts, conv });
                     this.clientsForKcp[conv] = kcpsocket;
+                    pinuscoder.setupHandler(this, kcpsocket, this.opts);
                     this.emit('connection', kcpsocket);
                 }
             },

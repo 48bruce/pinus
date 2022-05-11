@@ -76,7 +76,6 @@ export class KcpSocket extends EventEmitter implements ISocket {
             }
             this.kcpObj.input(msg);
             const data = this.kcpObj.recv();
-            console.log('kcp recv() 结果', data);
             pinuscoder.handlePackage(this, data);
         });
 
