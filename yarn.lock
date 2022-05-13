@@ -5877,9 +5877,9 @@ jsprim@^1.2.2:
     verror "1.10.0"
 
 kcpjs@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.9.tgz#75060fe152b19bf24d77b7cdabfc44410dd89cf5"
-  integrity sha512-qiA5nuvay7EDsyPbI+iZHQ2+Qm64fSxpZ7SzGyfFFGhTFsQOwBhpFSDsuKz7kqwYMFPDxAY7MVlHYvew2xtiwA==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/kcpjs/-/kcpjs-1.0.10.tgz#30d41df1d48a5f5ee7a90019eeb14ae2f62a8ee1"
+  integrity sha512-MbUHp7iyB8H36PN/I+et7dtjOcSh9v2pyC3hE+Xv6Py4EPmJt33NhSNGSikV91EC2t0FOHTXtvURDWAoO1WKmg==
   dependencies:
     "@ronomon/reed-solomon" "^6.0.0"
     crc-32 "^1.2.1"
