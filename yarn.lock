@@ -1181,9 +1181,9 @@
   integrity sha512-4i4w4tfNDo73BOjk0qHcB2YJ8A2SjITCrU4BTsgdJFTsVr6atPDXa0T9r0QZTrX3axtWwkqpZqF4B3gR0TqBGw==
 
 "@types/bluebird@^3.5.19":
-  version "3.5.36"
-  resolved "https://registry.npmmirror.com/@types/bluebird/download/@types/bluebird-3.5.36.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Fbluebird%2Fdownload%2F%40types%2Fbluebird-3.5.36.tgz#00d9301d4dc35c2f6465a8aec634bb533674c652"
-  integrity sha1-ANkwHU3DXC9kZaiuxjS7UzZ0xlI=
+  version "3.5.37"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.37.tgz#b99e5c7fe382c2c6d5252dc99d9fba6810fedbeb"
+  integrity sha512-g2qEd+zkfkTEudA2SrMAeAvY7CrFqtbsLILm2dT2VIeKTqMqVzcdfURlvu6FU3srRgbmXN1Srm94pg34EIehww==
 
 "@types/cliff@0.1.6", "@types/cliff@^0.1.4":
   version "0.1.6"
