@@ -6982,9 +6982,9 @@ node-releases@^2.0.1:
   integrity sha1-PR05XyBPHy8ppUNYuftnh2WtL8U=
 
 node@>=12.9.0:
-  version "17.3.0"
-  resolved "https://registry.npmmirror.com/node/download/node-17.3.0.tgz#7585d700f3c3ad098b64518b3ffa2115ffe81cda"
-  integrity sha512-Qftg93Mt+OkF0zmCELRFtBvpC7tian7sNg+I1vE97Mn6wV5gPj+jsii0B1K3NNqYgJac8Em50QZMbU8p/M9mCQ==
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-19.0.0.tgz#a688a439dd97b20f3b8169a8584f862774fad38b"
+  integrity sha512-joJ5busDTd1YUMBXsunjSk1kOlg2NajA87Hkem/bk/4KST6/56w5Pmq3RfIRzjVTwBOIhrcV1iS80qvzEsvZhQ==
   dependencies:
     node-bin-setup "^1.0.0"
 
