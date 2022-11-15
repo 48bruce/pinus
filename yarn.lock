@@ -6963,9 +6963,9 @@ node-gyp@^7.1.0:
     which "^2.0.2"
 
 node-kcp-x@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.1.tgz#a9a86937624ffda35d21b637962787589516bbd2"
-  integrity sha512-TIGlJIlMSHwYmnxjJ9NZnTQA5iXrIzA3ekJvQ09TH1Xy+7JZOLB4AjvhzXX1zWIxNET2VScXWwesAtrPdB7l2w==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.2.tgz#0f1c58960c7b77804c7976db667e25e055dc4733"
+  integrity sha512-Hzs6Ib9UuO3fqEsmM3fxgtimYErkAEGKW1YkBOG4oKICoc9WtSrV3CdM8d9kzGCQ9PMLXJIOd0vH0o0BFpQcPQ==
   dependencies:
     nan "^2.14.0"
 
