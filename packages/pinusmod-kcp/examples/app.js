@@ -39,6 +39,7 @@ app.configure('all', 'connector', function () {
         useDict: false,
         useProtobuf: false,
         heartbeatOnData: false,
+        stream: 1,
         // fec
         dataShards: 0,
         parityShards: 1,

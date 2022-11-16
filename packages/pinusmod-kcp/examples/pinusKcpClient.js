@@ -80,6 +80,27 @@ class PinusKcpClient extends EventEmitter {
         this.dict = null;
         this.abbrs = null;
         this.protos = null;
+
+        // kcp 初始化
+        this.kcpObj = new nodeKcp.KCP(this.opts.conv, this);
+        const nodelay = this.opts.nodelay || 0;
+        const interval = this.interval || 100;
+        const resend = this.opts.resend || 0;
+        const nc = this.opts.nc || 0;
+        this.kcpObj.nodelay(nodelay, interval, resend, nc);
+
+        const sndwnd = this.opts.sndwnd || 32;
+        const rcvwnd = this.opts.rcvwnd || sndwnd;
+        this.kcpObj.wndsize(sndwnd, rcvwnd);
+
+        const mtu = this.opts.mtu || 1400;
+        this.kcpObj.setmtu(mtu);
+        this.kcpObj.output(output);
+        if (opts.stream) {
+            this.kcpObj.stream(1);
+            this.nextMsgLength = 0;
+            this.tmpBuffer = undefined;
+        }
     }
 
     destroy() {
@@ -102,14 +123,76 @@ class PinusKcpClient extends EventEmitter {
         this.socket.on('listening', () => {
             // logger.info('kcp socket on listening');
         });
-        this.socket.on('message', (data) => {
-            this.kcpObj.input(data);
-            data = this.kcpObj.recv();
-            handlePackage(this, data);
+        this.socket.on('message', (msg) => {
+            this.kcpObj.input(msg);
+            let data = this.kcpObj.recv();
+            if (!data) {
+                return;
+            }
+            if (this.opts.stream) {
+                // stream 模式
+                const totalLen = data.byteLength;
+                let readOffset = 0;
+                while (readOffset < totalLen) {
+                    if (!this.nextMsgLength) {
+                        if (this.tmpBuffer) {
+                            const concatedBuff = Buffer.concat([this.tmpBuffer, data.slice(readOffset)]);
+                            const { len, offset } = this.decodeStreamLength(concatedBuff);
+                            if (!len) {
+                                // 数据不完整
+                                this.tmpBuffer = concatedBuff;
+                            } else {
+                                this.nextMsgLength = len;
+                                readOffset += offset;
+                            }
+                        } else {
+                            const { len, offset } = this.decodeStreamLength(data.slice(readOffset));
+                            if (!len) {
+                                // 数据不完整
+                                this.tmpBuffer = data;
+                            } else {
+                                this.nextMsgLength = len;
+                                readOffset += offset;
+                            }
+                        }
+                    }
+                    if (this.tmpBuffer) {
+                        if (this.tmpBuffer.byteLength + data.slice(readOffset).byteLength >= this.nextMsgLength) {
+                            // 有完整的包
+                            const piece = data.slice(readOffset, readOffset + this.nextMsgLength - this.tmpBuffer.byteLength);
+                            readOffset += this.nextMsgLength - this.tmpBuffer.byteLength;
+                            this.nextMsgLength = 0;
+                            const buffer = Buffer.concat([this.tmpBuffer, piece]);
+                            this.tmpBuffer = undefined;
+                            handlePackage(this, buffer);
+                        } else {
+                            // 不完整的包
+                            this.tmpBuffer = Buffer.concat([this.tmpBuffer, data.slice(readOffset)]);
+                            readOffset = totalLen;
+                        }
+                    } else {
+                        if (data.slice(readOffset).byteLength >= this.nextMsgLength) {
+                            // 有完整的包
+                            const piece = data.slice(readOffset, readOffset + this.nextMsgLength);
+                            readOffset += this.nextMsgLength;
+                            this.nextMsgLength = 0;
+                            handlePackage(this, piece);
+                        } else {
+                            // 不完整的包
+                            this.tmpBuffer = data.slice(readOffset);
+                            readOffset = totalLen;
+                        }
+                    }
+                }
+            } else {
+                // 消息模式
+                handlePackage(this, data);
+            }
         });
 
         this.on('heartbeat', this._handleHeartbeat);
         this.on('message', (pkg, peer) => {
+            // console.log('收到 pinus pkg', pkg);
             const msg = Message.decode(pkg.body);
             if (msg.compressRoute && this.abbrs && this.abbrs[msg.route]) {
                 msg.route = this.abbrs[msg.route];
@@ -129,21 +212,7 @@ class PinusKcpClient extends EventEmitter {
             }
         });
 
-        // kcp 初始化
-        this.kcpObj = new nodeKcp.KCP(this.opts.conv, this);
-        const nodelay = this.opts.nodelay || 0;
-        const interval = this.interval || 100;
-        const resend = this.opts.resend || 0;
-        const nc = this.opts.nc || 0;
-        this.kcpObj.nodelay(nodelay, interval, resend, nc);
 
-        const sndwnd = this.opts.sndwnd || 32;
-        const rcvwnd = this.opts.rcvwnd || sndwnd;
-        this.kcpObj.wndsize(sndwnd, rcvwnd);
-
-        const mtu = this.opts.mtu || 1400;
-        this.kcpObj.setmtu(mtu);
-        this.kcpObj.output(output);
         this.check();
 
         // 握手
@@ -224,7 +293,11 @@ class PinusKcpClient extends EventEmitter {
     // }
 
     send(buff) {
-        this.kcpObj.send(buff);
+        if (this.opts.stream) {
+            this.kcpObj.send(this.encodeStreamLength(buff));
+        } else {
+            this.kcpObj.send(buff);
+        }
         this.kcpObj.flush();
     }
 
@@ -236,6 +309,40 @@ class PinusKcpClient extends EventEmitter {
                 this.check();
             }, this.kcpObj.check(now));
         }
+    }
+
+    encodeStreamLength(buffer) {
+        let len = buffer.byteLength;
+        const lenBuff = Buffer.allocUnsafe(8).fill(0);
+        let offset = 0;
+        do {
+            let tmp = len % 128;
+            let next = Math.floor(len / 128);
+
+            if (next !== 0) {
+                tmp = tmp + 128;
+            }
+            lenBuff[offset++] = tmp;
+
+            len = next;
+        } while (len !== 0);
+        return Buffer.concat([lenBuff.slice(0, offset), buffer]);
+    }
+
+    decodeStreamLength(buff) {
+        let m = 0;
+        let offset = 0;
+        let len = 0;
+        do {
+            m = buff[offset];
+            len = len | ((m & 0x7f) << (7 * offset));
+            offset++;
+            if (offset >= buff.byteLength && m >= 128) {
+                // 数据不完整
+                return { len: 0, offset: 0 };
+            }
+        } while (m >= 128);
+        return { len, offset };
     }
 
     // ============================================== socket 数据处理 ==============================================
@@ -264,7 +371,6 @@ class PinusKcpClient extends EventEmitter {
             }
         }
 
-        //todo 暂时不支持 protobuf
         //Init protobuf protos
         if (this.protos) {
             const protoVersion = this.protos.version || 0;
