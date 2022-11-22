@@ -7214,9 +7214,9 @@ node-releases@^2.0.1:
   integrity sha1-PR05XyBPHy8ppUNYuftnh2WtL8U=
 
 node@>=12.9.0:
-  version "17.3.0"
-  resolved "https://registry.npmmirror.com/node/download/node-17.3.0.tgz#7585d700f3c3ad098b64518b3ffa2115ffe81cda"
-  integrity sha512-Qftg93Mt+OkF0zmCELRFtBvpC7tian7sNg+I1vE97Mn6wV5gPj+jsii0B1K3NNqYgJac8Em50QZMbU8p/M9mCQ==
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-19.1.0.tgz#bb4bdc80e3085d3ae41f368cd0dda03ba3e98f1b"
+  integrity sha512-jaapnpByf4TIkX3VayaDYSNycqNyarF+tiSYFOF/O6QsTJwGH+aYEPdp71QQn49zHtO2BTQVr7wtqsvRerzfGg==
   dependencies:
     node-bin-setup "^1.0.0"
 
