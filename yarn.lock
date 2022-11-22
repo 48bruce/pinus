@@ -7194,10 +7194,10 @@ node-gyp@^9.0.0:
     tar "^6.1.2"
     which "^2.0.2"
 
-node-kcp-x@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.2.tgz#0f1c58960c7b77804c7976db667e25e055dc4733"
-  integrity sha512-Hzs6Ib9UuO3fqEsmM3fxgtimYErkAEGKW1YkBOG4oKICoc9WtSrV3CdM8d9kzGCQ9PMLXJIOd0vH0o0BFpQcPQ==
+node-kcp-x@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.0.3.tgz#8f42613632d9685e64eb683e35da3ea3f0deb949"
+  integrity sha512-avbqE+JPnCkgcVSGZY8Jp9Ob2C4fX8VtF6jfpa/1Rkgu2pV5EYle9HHBj1umgyuGwI28Cecht6sSM3CMrCmr2A==
   dependencies:
     nan "^2.14.0"
 
