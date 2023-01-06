@@ -12,9 +12,11 @@ const { PinusKcpClient } = require('./pinusKcpClient');
     });
     console.log('connecting');
     await client.connect();
-    for (let i = 0; i < 10; i++) {
+    const msgCount = 1000;
+    const msgLength = 100;
+    for (let i = 0; i < msgCount; i++) {
         console.log('send msg', i);
-        const rand = Math.floor(Math.random() * 3000000);
+        const rand = Math.floor(Math.random() * msgLength);
         const buff = Buffer.allocUnsafe(rand).fill(65 + i%26);
         const result = await client.request('connector.connHandler.echo', { hi: buff.toString() });
         console.log('response', result, i);
