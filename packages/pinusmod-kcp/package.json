@@ -30,7 +30,7 @@
     "@types/mqtt-connection": "git+https://gitee.com/xxbruce/types-mqtt-connection.git",
     "@types/node": "^14",
     "@types/uuid": "^8.0.0",
-    "@types/ws": "^7.2.6",
+    "@types/ws": "^8.5.4",
     "typescript": "^4.3.5"
   },
   "bugs": {
