@@ -1,8 +1,21 @@
+### 1.6.4
 
-### 1.4.x
+[template] optimize preload.ts handle error. 
+[template] fix simple-example web-server.
+[pinus]nginx代理hybrid、ws获取客户端真实IP，port.[#532](https://github.com/node-pinus/pinus/pull/532)
+
+
+
+### 1.6.2
+
+[pinus] 修复命令行工具失效问题 [#388](https://github.com/node-pinus/pinus/issues/388)
+
+
+### 1.6.1
 
 [pinus-logger] fix: 已知 logger 存在内存泄漏的问题 [#167](https://github.com/node-pinus/pinus/issues/167)
 
+更新部分依赖版本
 
 
 #### 1.4.12

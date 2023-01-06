@@ -3,7 +3,6 @@ import * as path from 'path';
 let logger = getLogger('pinusmod-cli', path.basename(__filename));
 import * as util from '../util';
 import { consts } from '../consts';
-require('cliff');
 import { ICommand, AgentCommand } from '../command';
 import { ReadLine } from 'readline';
 import { AdminClient } from 'pinusmod-admin';
