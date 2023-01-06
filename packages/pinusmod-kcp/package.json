@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-kcp",
-  "version": "1.4.33",
+  "version": "1.4.34",
   "description": "kcp 的 connector (基于 node-kcp-x)",
   "main": "./dist/index.js",
   "scripts": {
