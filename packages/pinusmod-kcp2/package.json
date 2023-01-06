@@ -1,40 +1,40 @@
 {
-    "name": "pinusmod-kcp2",
-    "version": "1.4.30",
-    "description": "kcp 的 connector，基于 kcpjs",
-    "main": "./dist/index.js",
-    "scripts": {
-        "build": "rimraf dist/* && tsc"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/bruce48x/pinus-kcp.git"
-    },
-    "keywords": [
-        "pinus",
-        "pomelo",
-        "kcp"
-    ],
-    "author": "bruce48x",
-    "license": "MIT",
-    "dependencies": {
-        "@ronomon/reed-solomon": "^6.0.0",
-        "kcpjs": "^1.0.9",
-        "pinusmod": "^1.4.29",
-        "pinusmod-protobuf": "^1.4.29",
-        "pinusmod-protocol": "^1.4.29"
-    },
-    "devDependencies": {
-        "@types/async": "^3.2.3",
-        "@types/crc": "^3.4.0",
-        "@types/mqtt-connection": "git+https://gitee.com/xxbruce/types-mqtt-connection.git",
-        "@types/node": "^14",
-        "@types/uuid": "^8.0.0",
-        "@types/ws": "^7.2.6",
-        "typescript": "^4.3.5"
-    },
-    "bugs": {
-        "url": "https://github.com/bruce48x/pinus-kcp/issues"
-    },
-    "homepage": "https://github.com/bruce48x/pinus-kcp#readme"
+  "name": "pinusmod-kcp2",
+  "version": "1.4.33",
+  "description": "kcp 的 connector，基于 kcpjs",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "rimraf dist/* && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bruce48x/pinus-kcp.git"
+  },
+  "keywords": [
+    "pinus",
+    "pomelo",
+    "kcp"
+  ],
+  "author": "bruce48x",
+  "license": "MIT",
+  "dependencies": {
+    "@ronomon/reed-solomon": "^6.0.0",
+    "kcpjs": "^1.0.9",
+    "pinusmod": "^1.4.33",
+    "pinusmod-protobuf": "^1.4.29",
+    "pinusmod-protocol": "^1.4.29"
+  },
+  "devDependencies": {
+    "@types/async": "^3.2.3",
+    "@types/crc": "^3.4.0",
+    "@types/mqtt-connection": "git+https://gitee.com/xxbruce/types-mqtt-connection.git",
+    "@types/node": "^14",
+    "@types/uuid": "^8.0.0",
+    "@types/ws": "^7.2.6",
+    "typescript": "^4.3.5"
+  },
+  "bugs": {
+    "url": "https://github.com/bruce48x/pinus-kcp/issues"
+  },
+  "homepage": "https://github.com/bruce48x/pinus-kcp#readme"
 }
