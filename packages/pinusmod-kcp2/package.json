@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-kcp2",
-  "version": "1.4.33",
+  "version": "1.4.35",
   "description": "kcp 的 connector，基于 kcpjs",
   "main": "./dist/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "dependencies": {
     "@ronomon/reed-solomon": "^6.0.0",
     "kcpjs": "^1.0.9",
-    "pinusmod": "^1.4.33",
+    "pinusmod": "^1.4.35",
     "pinusmod-protobuf": "^1.4.29",
     "pinusmod-protocol": "^1.4.29"
   },

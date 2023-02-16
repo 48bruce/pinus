@@ -1,6 +1,6 @@
 {
   "name": "pinusmod",
-  "version": "1.4.33",
+  "version": "1.4.35",
   "private": false,
   "homepage": "https://github.com/node-pinus/pinus",
   "repository": {
@@ -62,7 +62,7 @@
     "pinusmod-logger": "^1.4.29",
     "pinusmod-protobuf": "^1.4.29",
     "pinusmod-protocol": "^1.4.29",
-    "pinusmod-rpc": "^1.4.29",
+    "pinusmod-rpc": "^1.4.35",
     "pinusmod-scheduler": "^1.4.29",
     "pretty-columns": "^1.2.1",
     "seq-queue": "^0.0.5",
