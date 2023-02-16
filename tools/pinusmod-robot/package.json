@@ -31,7 +31,7 @@
     "index.ts"
   ],
   "readmeFilename": "README.md",
-  "gitHead": "d33db82d670b7a5d21c95e15f91548f8a8ba7821",
+  "gitHead": "e04cafea17ee7ef31bbea500623c7a213934520c",
   "description": "pinusmod-robot is a simple tool to benchmark the socket.io server's performance.",
   "main": "./dist/index",
   "types": "./index.ts",
