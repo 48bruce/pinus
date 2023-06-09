@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
 	"name": "pinusmod-sample-websocket-chat-web-server",
 	"version": "1.4.11",
 	"private": true,
+=======
+	"name": "pinus-sample-websocket-chat-web-server",
+	"version": "1.7.0",
+	"private": false,
+>>>>>>> upstream/master
 	"dependencies": {
 		"express": "4.18.2"
 	}

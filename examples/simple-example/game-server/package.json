@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
     "name": "pinusmod-simple-example-game-server",
     "version": "1.4.11",
     "private": true,
+=======
+    "name": "pinus-simple-example-game-server",
+    "version": "1.7.0",
+    "private": false,
+>>>>>>> upstream/master
     "bin": {
         "$": "./dist/bin/app.js"
     },
@@ -21,8 +27,13 @@
         "@types/bluebird": "^3.5.19",
         "@types/node": "^14",
         "bluebird": "^3.5.1",
+<<<<<<< HEAD
         "pinusmod": "^1.4.11",
         "pinusmod-base-plugin": "^1.4.11",
+=======
+        "pinus": "^1.7.0",
+        "pinus-base-plugin": "^1.7.0",
+>>>>>>> upstream/master
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0"
     },

@@ -1,7 +1,29 @@
 {
   "lerna": "3.19.0",
+<<<<<<< HEAD
   "packages": ["packages/*", "tools/*", "plugins/*"],
   "version": "1.4.36",
+=======
+  "packages": [
+    "packages/pinus",
+    "packages/pinus-admin",
+    "packages/pinus-loader",
+    "packages/pinus-logger",
+    "packages/pinus-monitor",
+    "packages/pinus-protobuf",
+    "packages/pinus-protocol",
+    "packages/pinus-rpc",
+    "packages/pinus-scheduler",
+    "tools/*",
+    "plugins/*",
+    "examples/simple-example/*",
+    "examples/ssl-connector/*",
+    "examples/websocket-chat/*",
+    "examples/websocket-chat-ts-run/*",
+    "examples/robot-sample"
+  ],
+  "version": "1.7.0",
+>>>>>>> upstream/master
   "npmClient": "yarn",
   "useWorkspaces": true
 }
