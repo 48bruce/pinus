@@ -123,7 +123,9 @@ export class KcpSocket extends EventEmitter implements ISocket {
                             this.nextMsgLength = 0;
                             const buffer = Buffer.concat([this.tmpBuffer,piece]);
                             this.tmpBuffer = undefined;
-                            pinuscoder.handlePackage(this, buffer);
+                            if (0 !== pinuscoder.handlePackage(this, buffer)) {
+                                break;
+                            }
                         } else {
                             // 不完整的包
                             this.tmpBuffer = Buffer.concat([this.tmpBuffer, data.slice(readOffset)]);
@@ -135,7 +137,9 @@ export class KcpSocket extends EventEmitter implements ISocket {
                             const piece = data.slice(readOffset, readOffset+this.nextMsgLength);
                             readOffset += this.nextMsgLength;
                             this.nextMsgLength = 0;
-                            pinuscoder.handlePackage(this, piece);
+                            if (0 !== pinuscoder.handlePackage(this, piece)) {
+                                break;
+                            }
                         } else {
                             // 不完整的包
                             this.tmpBuffer = data.slice(readOffset);
