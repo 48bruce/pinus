@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "pinusmod-example-robot",
   "version": "1.4.11",
   "private": true,
-=======
-  "name": "pinus-example-robot",
-  "version": "1.7.0",
-  "private": false,
->>>>>>> upstream/master
   "description": "A distributed load test framework",
   "repository": {
     "type": "git",
@@ -31,12 +25,6 @@
     "@types/node": "^14",
     "@types/ws": "^8.5.4",
     "cli-color": "^2.0.0",
-<<<<<<< HEAD
-=======
-    "pinus-protobuf": "^1.7.0",
-    "pinus-protocol": "^1.7.0",
-    "pinus-robot": "^1.7.0",
->>>>>>> upstream/master
     "ws": "^8.12.0"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import { getLogger } from 'pinusmod-logger';
-import {MonitorAgent} from './monitor/monitorAgent';
+import {IMonitorAgentClientFactory, MonitorAgent} from './monitor/monitorAgent';
 import { EventEmitter } from 'events';
 import { MasterAgent, MasterAgentOptions } from './master/masterAgent';
 import * as schedule from 'pinusmod-scheduler';

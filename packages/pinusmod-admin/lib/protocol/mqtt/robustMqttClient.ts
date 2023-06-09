@@ -6,7 +6,7 @@
  *  由于master上会注册所有服务器进程，在重启master的过程中发现有概率出现心跳超时直接就断开monitorAgent与masterAgent的连接，不会重连。
  *  断开后会导致其它进程向master注册或者移除无法通知到连接断开的服务器，需要自己排查进程是不是断开了，手动重启断开的进程才能重新连接masterAgent
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
 import { MqttClient } from './mqttClient';
 let logger = getLogger('pinus-admin', path.basename(__filename));

@@ -45,17 +45,9 @@ function getLogger(...args: string[]) {
     for (let key in logger) {
         pLogger[key] = logger[key];
     }
-    let pause = false;
-    process.setMaxListeners(0);
-    process.on('log4js:pause', (val) => {
-        pause = val;
-    });
 
     ['log', 'debug', 'info', 'warn', 'error', 'trace', 'fatal'].forEach((item, idx) => {
         pLogger[item] = function () {
-            if (pause) {
-                return;
-            }
             // 从根源过滤日志级别
             if (idx < logLevel || log4jspause) {
                 return;

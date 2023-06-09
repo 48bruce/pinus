@@ -51,24 +51,6 @@
 	"workspaces": [
 		"packages/*",
 		"tools/*",
-<<<<<<< HEAD
 		"plugins/*"
-=======
-		"plugins/*",
-        "packages/pinus",
-        "packages/pinus-admin",
-        "packages/pinus-loader",
-        "packages/pinus-logger",
-        "packages/pinus-monitor",
-        "packages/pinus-protobuf",
-        "packages/pinus-protocol",
-        "packages/pinus-rpc",
-        "packages/pinus-scheduler",
-		"examples/simple-example/*",
-		"examples/ssl-connector/*",
-		"examples/websocket-chat/*",
-		"examples/websocket-chat-ts-run/*",
-		"examples/robot-sample"
->>>>>>> upstream/master
 	]
 }
