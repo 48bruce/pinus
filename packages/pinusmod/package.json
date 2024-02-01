@@ -73,8 +73,8 @@
     "pinusmod": "./dist/bin/pinus.js"
   },
   "devDependencies": {
-    "@types/async": "3.2.16",
-    "@types/crc": "3.4.0",
+    "@types/async": "3.2.20",
+    "@types/crc": "3.8.1",
     "@types/eyes": "0.1.32",
     "@types/mkdirp": "1.0.2",
     "@types/mocha": "^5.0.0",
