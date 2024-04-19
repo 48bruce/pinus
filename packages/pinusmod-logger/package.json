@@ -23,7 +23,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "log4js": "^6.0.0"
+    "pinusmod": "^1.5.0"
   },
   "devDependencies": {
     "@types/node": "^16",

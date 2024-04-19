@@ -23,7 +23,8 @@
     "node": ">=14"
   },
   "dependencies": {
-    "reflect-metadata": "0.1.13"
+    "pinusmod": "^1.5.0",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "@types/node": "^16",
