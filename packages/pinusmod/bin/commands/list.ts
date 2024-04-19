@@ -1,7 +1,6 @@
 import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT } from '../utils/constants';
 import { connectToMaster } from '../utils/utils';
 import {AdminClient} from 'pinusmod-admin';
-import * as cliff from 'cliff';
 import * as colors from 'colors';
 // @ts-ignore
 import * as pc from 'pretty-columns';

@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@ronomon/reed-solomon": "^6.0.0",
-    "node-kcp-x": "^1.1.2",
+    "node-kcp-x": "^1.2.0",
     "pinusmod": "^1.5.0",
     "pinusmod-protobuf": "^1.4.37",
     "pinusmod-protocol": "^1.4.29"
