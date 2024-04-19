@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-admin",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "main": "./dist/index",
   "types": "./lib/index",
   "files": [
@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "mqtt-connection": "^4.1.0",
-    "pinusmod-logger": "^1.4.37",
-    "pinusmod-monitor": "^1.4.29",
-    "pinusmod-scheduler": "^1.4.37",
+    "pinusmod-logger": "^1.6.0",
+    "pinusmod-monitor": "^1.6.0",
+    "pinusmod-scheduler": "^1.6.0",
     "read-last-lines": "^1.3.0"
   },
   "devDependencies": {
