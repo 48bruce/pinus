@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-kcp2",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "kcp 的 connector，基于 kcpjs",
   "main": "./dist/index.js",
   "scripts": {
