@@ -18,7 +18,6 @@
   "author": "bruce48x",
   "license": "MIT",
   "dependencies": {
-    "@ronomon/reed-solomon": "^6.0.0",
     "node-kcp-x": "^1.2.0",
     "pinusmod": "^1.8.0",
     "pinusmod-protobuf": "^1.8.0",
