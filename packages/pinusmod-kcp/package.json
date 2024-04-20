@@ -18,7 +18,7 @@
   "author": "bruce48x",
   "license": "MIT",
   "dependencies": {
-    "node-kcp-x": "^1.2.0",
+    "node-kcp-x": "^1.2.1",
     "pinusmod": "^1.8.0",
     "pinusmod-protobuf": "^1.8.0",
     "pinusmod-protocol": "^1.8.0"

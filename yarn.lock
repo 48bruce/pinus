@@ -7244,7 +7244,7 @@ node-fingerprint@0.0.2:
   resolved "https://registry.npmmirror.com/node-fingerprint/download/node-fingerprint-0.0.2.tgz"
   integrity sha1-Mcur63GmeufdWn3AQuUcPHWGhQE=
 
-node-gyp-build@^4.3.0:
+node-gyp-build@^4.3.0, node-gyp-build@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.8.0.tgz#3fee9c1731df4581a3f9ead74664369ff00d26dd"
   integrity sha512-u6fs2AEUljNho3EYTJNBfImO5QTo/J/1Etd+NVdCj7qWKUSN/bSLkZwhDv7I+w/MSC6qJ4cknepkAYykDdK8og==
@@ -7266,12 +7266,13 @@ node-gyp@^9.0.0:
     tar "^6.1.2"
     which "^2.0.2"
 
-node-kcp-x@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.2.0.tgz#175b2c98a6d8a258f63e821a191d6c06aa095c68"
-  integrity sha512-waurVaINPA/4ha+jHF08A63q5J7ffL2VcrWBeVCo3yttExDWtl/eOHcfj5JnTaDxDt2ayFqmouYUFfOWh0bmEQ==
+node-kcp-x@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/node-kcp-x/-/node-kcp-x-1.2.1.tgz#1293d33ab0266d426a0f1c391b99a15b0c8d8ec4"
+  integrity sha512-enehzIj/isyyRUCWazEXFD8ei8u6FzDmatgQoNDtGVBpieNJ8/D+dCvB9iWzaREGDVEWajOXdiXLY5TqTo3+iw==
   dependencies:
     node-addon-api "^6.1.0"
+    node-gyp-build "^4.8.0"
 
 node-preload@^0.2.1:
   version "0.2.1"
