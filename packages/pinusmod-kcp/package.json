@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-kcp",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "kcp 的 connector (基于 node-kcp-x)",
   "main": "./dist/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "node-kcp-x": "^1.2.1",
-    "pinusmod": "^1.8.0",
+    "pinusmod": "^1.8.3",
     "pinusmod-protobuf": "^1.8.0",
     "pinusmod-protocol": "^1.8.0"
   },
