@@ -191,6 +191,9 @@ export interface ServerStartArgs extends ServerInfo {
     type ?: Constants.RESERVED.ALL;
     startId ?: string;
     main ?: string;
+    enableBatchStart?: boolean; // 分批启动
+    batchCount?: number; // 每一批启动的数量
+    batchInterval?: number; // 每一批之间的间隔时间，毫秒
 }
 
 /**
