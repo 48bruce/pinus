@@ -13,6 +13,7 @@ import * as Constants from '../util/constants';
 import { Application } from '../application';
 import { ConsoleService, ConsoleServiceOpts } from 'pinusmod-admin';
 import { IModule } from '../index';
+import {ServerStartArgs} from '../util/appUtil';
 
 
 export type MasterServerOptions =
@@ -24,7 +25,7 @@ export type MasterServerOptions =
 
 export class MasterServer {
     app: Application;
-    masterInfo: any;
+    masterInfo: ServerStartArgs;
     registered = {};
     modules: IModule[] = [];
     closeWatcher: boolean;

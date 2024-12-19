@@ -15,6 +15,29 @@ let logger = getLogger('pinus', path.basename(__filename));
 let cpus: { [serverId: string]: number } = {};
 let env: string = Constants.RESERVED.ENV_DEV;
 
+function startBatch(app: Application, servers: any, keys: string[], step: number, intv: number, index: number, callback: () => void) {
+    if (index >= keys.length) {
+        return callback(); // 所有服务器都已启动完成，调用最终回调
+    }
+
+    for (let j = 0; j < step; j++) {
+        const currentIndex = index + j;
+        if (currentIndex >= keys.length) {
+            break;
+        }
+        const key = keys[currentIndex];
+        const server = servers[key];
+        if (!server) {
+            continue;
+        }
+        run(app, server);
+    }
+
+    setTimeout(() => {
+        startBatch(app, servers, keys, step, intv, index + step, callback);
+    }, intv);
+}
+
 /**
  * Run all servers
  *
@@ -28,10 +51,7 @@ export function runServers(app: Application) {
         case Constants.RESERVED.MASTER:
             break;
         case Constants.RESERVED.ALL:
-            servers = app.getServersFromConfig();
-            for (let serverId in servers) {
-                run(app, servers[serverId]);
-            }
+            startServers(app, () => console.log('run all servers!'));
             break;
         default:
             server = app.getServerFromConfig(condition);
@@ -43,6 +63,27 @@ export function runServers(app: Application) {
                     run(app, servers[i]);
                 }
             }
+    }
+}
+
+function startServers(app: Application, callback: () => void) {
+    const servers = app.getServersFromConfig();
+    const keys = Object.keys(servers);
+    if (!servers || !keys.length) {
+        return;
+    }
+
+    // 判断是否分批启动
+    const masterServerInfo = app.components.__master__.master.masterInfo;
+    if (masterServerInfo.enableBatchStart && masterServerInfo.batchCount && masterServerInfo.batchInterval) {
+        // 分批启动
+        startBatch(app, servers, keys, masterServerInfo.batchCount, masterServerInfo.batchInterval, 0, callback);
+    } else {
+        // 全部一次性启动
+        for (let serverId in servers) {
+            run(app, servers[serverId]);
+        }
+        callback();
     }
 }
 
