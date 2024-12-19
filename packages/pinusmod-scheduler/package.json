@@ -1,6 +1,6 @@
 {
   "name": "pinusmod-scheduler",
-  "version": "1.8.0",
+  "version": "1.8.4",
   "author": "mybios <mybios@qq.com>",
   "main": "./dist/schedule",
   "types": "./lib/schedule",
@@ -23,7 +23,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "pinusmod-logger": "^1.8.0"
+    "pinusmod-logger": "^1.8.4"
   },
   "devDependencies": {
     "@types/node": "^16",
