@@ -40,6 +40,12 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
     ping: number;
     pong: number;
     timer: {ping?: NodeJS.Timeout, pong?: NodeJS.Timeout};
+    // 新增重连相关属性
+    enableReconnect: boolean;
+    reconnectInterval: number;
+    maxReconnectAttempts: number;
+    reconnectAttempts: number = 0;
+    reconnectTimer: any = null;
 
     constructor(serverInfo: {id: string, host: string, port: number}, opts: MailBoxOpts) {
         super();
@@ -55,13 +61,14 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
         this.timeoutValue = opts.timeout || DEFAULT_CALLBACK_TIMEOUT;
         // Heartbeat ping interval.
         this.ping = 'ping' in opts ? opts.ping : 25e3;
-
         // Heartbeat pong response timeout.
         this.pong = 'pong' in opts ? opts.pong : 10e3;
-
         this.timer = {};
-
         this.connected = false;
+        // 新增重连参数
+        this.enableReconnect = opts.enableReconnect !== false;
+        this.reconnectInterval = opts.reconnectInterval || 5000;
+        this.maxReconnectAttempts = opts.maxReconnectAttempts || 10;
     }
 
     connect(tracer: Tracer, cb: (err?: Error) => void) {
@@ -70,7 +77,10 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             utils.invokeCallback(cb, new Error('mailbox has already connected.'));
             return;
         }
+        this._doConnect(tracer, cb);
+    }
 
+    private _doConnect(tracer: Tracer, cb: (err?: Error) => void) {
         this.socket = net.connect(
             this.port,
             this.host
@@ -78,6 +88,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             // success to connect
             this.connected = true;
             this.closed = false;
+            this.reconnectAttempts = 0;
             if (this.bufferMsg) {
                 // start flush interval
                 this._interval = setInterval(() => {
@@ -85,6 +96,9 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 }, this.interval);
             }
             this.heartbeat();
+            // 连接恢复，自动 flush queue
+            this.flush();
+            this.emit('reconnected');
             utils.invokeCallback(cb, undefined);
         });
 
@@ -117,14 +131,38 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 utils.invokeCallback(cb, err);
                 return;
             }
-         //   this.emit('error', err, this);
             this.emit('close', this.id);
         });
 
         this.socket.on('end', () => {
             this.emit('close', this.id);
         });
-        // TODO: reconnect and heartbeat
+
+        // 断线自动重连
+        this.socket.on('close', () => {
+            this.connected = false;
+            if (this.enableReconnect && !this.closed) {
+                this._tryReconnect(tracer);
+            }
+        });
+    }
+
+    private _tryReconnect(tracer: Tracer) {
+        if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+            this.emit('max-retries', this.id);
+            return;
+        }
+        this.reconnectAttempts++;
+        this.emit('reconnecting', this.id, this.reconnectAttempts);
+        if (this.reconnectTimer) {
+            clearTimeout(this.reconnectTimer);
+        }
+        // 重连时间间隔，最大20分钟
+        const timeout = Math.max(1200 * 1000, Math.pow(this.reconnectInterval, this.reconnectAttempts + 1));
+        this.reconnectTimer = setTimeout(() => {
+            if (this.closed) return;
+            this._doConnect(tracer, () => {});
+        }, timeout);
     }
 
     /**
@@ -145,6 +183,10 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             this.timer['ping'] = null;
             clearTimeout(this.timer['pong']);
             this.timer['pong'] = null;
+        }
+        if (this.reconnectTimer) {
+            clearTimeout(this.reconnectTimer);
+            this.reconnectTimer = null;
         }
         if (this.socket) {
             this.socket.removeAllListeners();

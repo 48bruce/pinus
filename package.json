@@ -47,6 +47,7 @@
 	"private": true,
 	"workspaces": [
 		"packages/*",
+		"examples/*",
 		"tools/*",
 		"plugins/*"
 	]

@@ -18,6 +18,11 @@ let STATE_CLOSED = 3; // station has closed
 export interface MailStationOpts {
     mailboxFactory?: IMailBoxFactory;
     pendingSize?: number;
+    // 新增重连相关配置
+    enableReconnect?: boolean;
+    reconnectInterval?: number;
+    maxReconnectAttempts?: number;
+    healthCheckInterval?: number;
 }
 
 export interface RpcServerInfo {
@@ -36,6 +41,16 @@ export interface IRpcFilter {
 }
 export type RpcFilter = RpcFilterFunction | IRpcFilter;
 export type MailStationErrorHandler = (err: Error, serverId: string, msg: any, opts: any) => void;
+
+// 新增连接状态接口
+export interface ConnectionStatus {
+    serverId: string;
+    connected: boolean;
+    lastConnectTime: number;
+    reconnectAttempts: number;
+    lastError?: Error;
+}
+
 /**
  * Mail station constructor.
  *
@@ -67,6 +82,18 @@ export class MailStation extends EventEmitter {
     opts: MailStationOpts;
     mailboxFactory: IMailBoxFactory;
     pendingSize: number;
+
+    // 新增重连相关属性
+    enableReconnect: boolean;
+    reconnectInterval: number;
+    maxReconnectAttempts: number;
+    healthCheckInterval: number;
+    connectionStatus: {[serverId: string]: ConnectionStatus} = {};
+    reconnectTimers: {[serverId: string]: NodeJS.Timeout} = {};
+    healthCheckTimers: {[serverId: string]: NodeJS.Timeout} = {};
+    // 新增：全局健康检查 interval id
+    private _healthCheckIntervalId?: NodeJS.Timeout;
+
     constructor(opts?: MailStationOpts) {
         super();
         this.opts = opts;
@@ -74,6 +101,11 @@ export class MailStation extends EventEmitter {
 
         this.pendingSize = opts.pendingSize || constants.DEFAULT_PARAM.DEFAULT_PENDING_SIZE;
 
+        // 初始化重连配置
+        this.enableReconnect = opts.enableReconnect !== false; // 默认启用重连
+        this.reconnectInterval = opts.reconnectInterval || 5000; // 默认5秒重连间隔
+        this.maxReconnectAttempts = opts.maxReconnectAttempts || 10; // 默认最大重连10次
+        this.healthCheckInterval = opts.healthCheckInterval || 30000; // 默认30秒健康检查间隔
     }
 
     /**
@@ -91,6 +123,10 @@ export class MailStation extends EventEmitter {
         let self = this;
         process.nextTick(function () {
             self.state = STATE_STARTED;
+            // 启动健康检查
+            if (self.enableReconnect) {
+                self.startHealthCheck();
+            }
             cb();
         });
     }
@@ -107,6 +143,15 @@ export class MailStation extends EventEmitter {
             return;
         }
         this.state = STATE_CLOSED;
+
+        // 清理重连定时器
+        this.clearAllReconnectTimers();
+        this.clearAllHealthCheckTimers();
+        // 新增：清理全局健康检查 interval
+        if (this._healthCheckIntervalId) {
+            clearInterval(this._healthCheckIntervalId);
+            this._healthCheckIntervalId = undefined;
+        }
 
         let self: {[key: string]: any} = this;
 
@@ -137,6 +182,14 @@ export class MailStation extends EventEmitter {
         let type = serverInfo.serverType;
         this.servers[id] = serverInfo;
         this.onlines[id] = 1;
+
+        // 初始化连接状态
+        this.connectionStatus[id] = {
+            serverId: id,
+            connected: false,
+            lastConnectTime: 0,
+            reconnectAttempts: 0
+        };
 
         if (!this.serversMap[type]) {
             this.serversMap[type] = [];
@@ -176,6 +229,12 @@ export class MailStation extends EventEmitter {
             mailbox.close();
             delete this.mailboxes[id];
         }
+
+        // 清理重连相关资源
+        this.clearReconnectTimer(id);
+        this.clearHealthCheckTimer(id);
+        delete this.connectionStatus[id];
+
         this.emit('removeServer', id);
     }
 
@@ -199,44 +258,37 @@ export class MailStation extends EventEmitter {
      *
      */
     clearStation() {
-        this.onlines = {};
+        this.servers = {};
         this.serversMap = {};
+        this.onlines = {};
+        this.connecting = {};
+        this.mailboxes = {};
+        this.pendings = {};
+
+        // 清理重连相关资源
+        this.clearAllReconnectTimers();
+        this.clearAllHealthCheckTimers();
+        this.connectionStatus = {};
     }
 
     /**
-     * Replace remote servers info.
+     * Replace servers with new server info list.
      *
-     * @param {Array} serverInfos server info list
+     * @param  {Array} serverInfos new server info list
      */
     replaceServers(serverInfos: Array<RpcServerInfo>) {
         this.clearStation();
-        if (!serverInfos || !serverInfos.length) {
-            return;
-        }
-
-        for (let i = 0, l = serverInfos.length; i < l; i++) {
-            let id = serverInfos[i].id;
-            let type = serverInfos[i].serverType;
-            this.onlines[id] = 1;
-            if (!this.serversMap[type]) {
-                this.serversMap[type] = [];
-            }
-            this.servers[id] = serverInfos[i];
-            if (this.serversMap[type].indexOf(id) < 0) {
-                this.serversMap[type].push(id);
-            }
-        }
+        this.addServers(serverInfos);
     }
 
     /**
-     * Dispatch rpc message to the mailbox
+     * Dispatch rpc message to the corresponding mailbox.
      *
      * @param  {Object}   tracer   rpc debug tracer
      * @param  {String}   serverId remote server id
-     * @param  {Object}   msg      rpc invoke message
-     * @param  {Object}   opts     rpc invoke option args
+     * @param  {Object}   msg      rpc message
+     * @param  {Object}   opts     rpc client options
      * @param  {Function} cb       callback function
-     * @return {Void}
      */
     dispatch(tracer: Tracer, serverId: string, msg: MailBoxMessage, opts: object, cb:  (err: Error , ...args: any[]) => void) {
         tracer && tracer.info('client', __filename, 'dispatch', 'dispatch rpc message to the mailbox');
@@ -354,6 +406,10 @@ export class MailStation extends EventEmitter {
     connect(tracer: Tracer, serverId: string, cb: Function) {
         let self = this;
         let mailbox = self.mailboxes[serverId];
+
+        // 更新连接状态
+        this.updateConnectionStatus(serverId, { connected: false, lastConnectTime: Date.now() });
+
         mailbox.connect(tracer, function (err: Error) {
             if (!!err) {
                 tracer && tracer.error('client', __filename, 'lazyConnect', 'fail to connect to remote server: ' + serverId);
@@ -361,20 +417,225 @@ export class MailStation extends EventEmitter {
                 if (!!self.mailboxes[serverId]) {
                     delete self.mailboxes[serverId];
                 }
+
+                // 更新连接状态
+                self.updateConnectionStatus(serverId, {
+                    connected: false,
+                    lastError: err,
+                    reconnectAttempts: self.connectionStatus[serverId]?.reconnectAttempts || 0
+                });
+
                 self.emit('error', constants.RPC_ERROR.FAIL_CONNECT_SERVER, tracer, serverId, null, self.opts);
+
+                // 如果启用重连，安排重连
+                if (self.enableReconnect) {
+                    self.scheduleReconnect(serverId);
+                }
+
                 return;
             }
+
+            // 连接成功，更新状态
+            self.updateConnectionStatus(serverId, {
+                connected: true,
+                reconnectAttempts: 0,
+                lastError: undefined
+            });
+
             mailbox.on('close', function (id: string) {
                 let mbox = self.mailboxes[id];
                 if (!!mbox) {
                     mbox.close();
                     delete self.mailboxes[id];
                 }
+
+                // 更新连接状态
+                self.updateConnectionStatus(id, { connected: false });
+
+                // 如果启用重连，安排重连
+                if (self.enableReconnect) {
+                    self.scheduleReconnect(id);
+                }
+
                 self.emit('close', id);
             });
             delete self.connecting[serverId];
             flushPending(tracer, self, serverId);
         });
+    }
+
+    /**
+     * 更新连接状态
+     */
+    private updateConnectionStatus(serverId: string, updates: Partial<ConnectionStatus>) {
+        if (!this.connectionStatus[serverId]) {
+            this.connectionStatus[serverId] = {
+                serverId,
+                connected: false,
+                lastConnectTime: 0,
+                reconnectAttempts: 0
+            };
+        }
+
+        Object.assign(this.connectionStatus[serverId], updates);
+
+        // 发出连接状态变化事件
+        this.emit('connectionStatusChanged', serverId, this.connectionStatus[serverId]);
+    }
+
+    /**
+     * 安排重连
+     */
+    scheduleReconnect(serverId: string) {
+        const status = this.connectionStatus[serverId];
+        if (!status) return;
+
+        // 检查是否超过最大重连次数
+        if (status.reconnectAttempts >= this.maxReconnectAttempts) {
+            logger.error('[pinus-rpc] max reconnect attempts reached for server: %s', serverId);
+            this.emit('maxReconnectAttemptsReached', serverId);
+            return;
+        }
+
+        // 清除之前的重连定时器
+        this.clearReconnectTimer(serverId);
+
+        // 计算重连延迟（指数退避）
+        const delay = this.reconnectInterval * Math.pow(2, status.reconnectAttempts);
+
+        logger.info('[pinus-rpc] scheduling reconnect for server: %s, attempt: %d, delay: %dms',
+            serverId, status.reconnectAttempts + 1, delay);
+
+        this.reconnectTimers[serverId] = setTimeout(() => {
+            this.performReconnect(serverId);
+        }, delay);
+    }
+
+    /**
+     * 执行重连
+     */
+    private performReconnect(serverId: string) {
+        const status = this.connectionStatus[serverId];
+        if (!status) return;
+
+        // 增加重连次数
+        status.reconnectAttempts++;
+
+        logger.info('[pinus-rpc] attempting to reconnect to server: %s, attempt: %d',
+            serverId, status.reconnectAttempts);
+
+        // 检查服务器是否在线
+        if (!this.onlines[serverId] || this.onlines[serverId] !== 1) {
+            logger.warn('[pinus-rpc] server is not online, skipping reconnect: %s', serverId);
+            return;
+        }
+
+        // 创建新的 mailbox 并连接
+        const server = this.servers[serverId];
+        if (!server) {
+            logger.error('[pinus-rpc] server info not found: %s', serverId);
+            return;
+        }
+
+        const mailbox = this.mailboxFactory(server, this.opts as MailBoxOpts);
+        this.mailboxes[serverId] = mailbox;
+        this.connecting[serverId] = true;
+
+        this.connect(new Tracer(null, false, null, null, null, null), serverId, () => {
+            // 重连回调
+            logger.info('[pinus-rpc] reconnect completed for server: %s', serverId);
+        });
+    }
+
+    /**
+     * 启动健康检查
+     */
+    private startHealthCheck() {
+        // 新增：防止重复启动 interval
+        if (this._healthCheckIntervalId) {
+            clearInterval(this._healthCheckIntervalId);
+        }
+        this._healthCheckIntervalId = setInterval(() => {
+            for (const serverId in this.servers) {
+                this.performHealthCheck(serverId);
+            }
+        }, this.healthCheckInterval);
+    }
+
+    /**
+     * 执行健康检查
+     */
+    private performHealthCheck(serverId: string) {
+        const status = this.connectionStatus[serverId];
+        if (!status) return;
+
+        const mailbox = this.mailboxes[serverId];
+
+        // 如果连接断开且没有重连定时器，尝试重连
+        if (!status.connected && !this.reconnectTimers[serverId] && this.enableReconnect) {
+            logger.info('[pinus-rpc] health check: connection lost for server: %s, scheduling reconnect', serverId);
+            this.scheduleReconnect(serverId);
+        }
+
+        // 如果连接正常，重置重连次数
+        if (status.connected && status.reconnectAttempts > 0) {
+            status.reconnectAttempts = 0;
+            logger.info('[pinus-rpc] health check: connection restored for server: %s', serverId);
+        }
+    }
+
+    /**
+     * 清除重连定时器
+     */
+    private clearReconnectTimer(serverId: string | number) {
+        const id = String(serverId);
+        if (this.reconnectTimers[id]) {
+            clearTimeout(this.reconnectTimers[id]);
+            delete this.reconnectTimers[id];
+        }
+    }
+
+    /**
+     * 清除健康检查定时器
+     */
+    private clearHealthCheckTimer(serverId: string | number) {
+        const id = String(serverId);
+        if (this.healthCheckTimers[id]) {
+            clearTimeout(this.healthCheckTimers[id]);
+            delete this.healthCheckTimers[id];
+        }
+    }
+
+    /**
+     * 清除所有重连定时器
+     */
+    private clearAllReconnectTimers() {
+        for (const serverId in this.reconnectTimers) {
+            this.clearReconnectTimer(serverId);
+        }
+    }
+
+    /**
+     * 清除所有健康检查定时器
+     */
+    private clearAllHealthCheckTimers() {
+        for (const serverId in this.healthCheckTimers) {
+            this.clearHealthCheckTimer(serverId);
+        }
+    }
+
+    /**
+     * 获取连接状态
+     */
+    getConnectionStatus(serverId: string): ConnectionStatus | undefined {
+        return this.connectionStatus[serverId];
+    }
+
+    /**
+     * 获取所有连接状态
+     */
+    getAllConnectionStatus(): {[serverId: string]: ConnectionStatus} {
+        return { ...this.connectionStatus };
     }
 }
 /**

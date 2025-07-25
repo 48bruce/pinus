@@ -385,6 +385,49 @@ export class RpcClient {
     }
 
     /**
+     * 获取连接状态
+     * @param serverId 服务器ID
+     * @returns 连接状态
+     */
+    getConnectionStatus(serverId: string) {
+        return this._station.getConnectionStatus(serverId);
+    }
+
+    /**
+     * 获取所有连接状态
+     * @returns 所有连接状态
+     */
+    getAllConnectionStatus() {
+        return this._station.getAllConnectionStatus();
+    }
+
+    /**
+     * 监听连接状态变化事件
+     * @param listener 事件监听器
+     */
+    onConnectionStatusChanged(listener: (serverId: string, status: any) => void) {
+        this._station.on('connectionStatusChanged', listener);
+    }
+
+    /**
+     * 监听最大重连次数达到事件
+     * @param listener 事件监听器
+     */
+    onMaxReconnectAttemptsReached(listener: (serverId: string) => void) {
+        this._station.on('maxReconnectAttemptsReached', listener);
+    }
+
+    /**
+     * 手动触发重连
+     * @param serverId 服务器ID
+     */
+    triggerReconnect(serverId: string) {
+        if (this._station.enableReconnect) {
+            this._station.scheduleReconnect(serverId);
+        }
+    }
+
+    /**
      * Generate prxoy for function type field
      *
      * @param client {Object} current client instance.
