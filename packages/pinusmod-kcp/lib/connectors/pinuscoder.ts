@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { pinus } from 'pinusmod';
 import handler from '../common/handler';
 import * as Kick from '../commands/kick';
 import { HandshakeCommand } from '../commands/handshake';
