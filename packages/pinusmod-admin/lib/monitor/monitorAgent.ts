@@ -9,6 +9,7 @@ import { ConsoleService } from '../consoleService';
 import * as path from 'path';
 let logger = getLogger('pinusmod-admin', path.basename(__filename));
 import { RobustMqttClient } from '../protocol/mqtt/robustMqttClient';
+import { EnhancedMqttClient } from '../protocol/mqtt/enhancedMqttClient';
 
 let ST_INITED = 1;
 let ST_CONNECTED = 2;
@@ -28,6 +29,10 @@ export function createDefaultMonitorAgentClient (opts: MonitorAgentOpts) {
 
 export function createRobustMonitorAgentClient (opts: MonitorAgentOpts) {
     return new RobustMqttClient(opts);
+}
+
+export function createEnhancedMonitorAgentClient (opts: MonitorAgentOpts) {
+    return new EnhancedMqttClient(opts);
 }
 
 /**
