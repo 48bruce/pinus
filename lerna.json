@@ -1,23 +1,11 @@
 {
   "lerna": "6.6.2",
   "packages": [
-    "packages/pinusmod",
-    "packages/pinusmod-admin",
-    "packages/pinusmod-loader",
-    "packages/pinusmod-logger",
-    "packages/pinusmod-monitor",
-    "packages/pinusmod-protobuf",
-    "packages/pinusmod-protocol",
-    "packages/pinusmod-rpc",
-    "packages/pinusmod-scheduler",
+    "packages/*",
     "tools/*",
     "plugins/*",
-    "examples/simple-example/*",
-    "examples/ssl-connector/*",
-    "examples/websocket-chat/*",
-    "examples/websocket-chat-ts-run/*",
-    "examples/robot-sample"
+    "examples/*"
   ],
-  "version": "1.8.5",
+  "version": "1.9.4",
   "npmClient": "yarn"
 }

@@ -1,6 +1,6 @@
 {
   "name": "pinusmod",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "private": false,
   "homepage": "https://github.com/node-pinus/pinus",
   "repository": {
@@ -57,7 +57,7 @@
     "mkdirp": "^3.0.1",
     "mqtt-connection": "^4.1.0",
     "node-bignumber": "^1.2.1",
-    "pinusmod-admin": "~1.9.2",
+    "pinusmod-admin": "~1.9.4",
     "pinusmod-loader": "~1.8.0",
     "pinusmod-logger": "~1.8.4",
     "pinusmod-protobuf": "~1.8.4",

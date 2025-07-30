@@ -11,6 +11,7 @@ import { getLogger } from 'pinusmod-logger';
 import * as path from 'path';
 import { RobustMqttClient } from './robustMqttClient';
 import * as constants from '../../util/constants';
+import * as dns from 'dns';
 
 let logger = getLogger('pinus-admin', path.basename(__filename));
 
@@ -58,7 +59,7 @@ export class EnhancedMqttClient extends RobustMqttClient {
         this.networkCheckInterval = opts.networkCheckInterval || 30 * 1000; // 30秒
         this.enableNetworkDetection = opts.enableNetworkDetection !== false;
         this.baseReconnectDelay = constants.DEFAULT_PARAM.RECONNECT_DELAY;
-        this.dnsAddress = opts.dnsAddress || '223.5.5.5';
+        this.dnsAddress = opts.dnsAddress || 'baidu.com';
         logger.info('EnhancedMqttClient initialized with maxReconnectAttempts: %d, resetTime: %d ms',
                    this.maxReconnectAttempts, this.reconnectAttemptResetTime);
     }
@@ -197,8 +198,7 @@ export class EnhancedMqttClient extends RobustMqttClient {
         const previousStatus = this.isNetworkAvailable;
 
         // 简单的网络状态检测：检查DNS解析
-        const dns = require('dns');
-        dns.lookup(this.dnsAddress, (err: any) => {
+        dns.resolve(this.dnsAddress, (err: any) => {
             this.isNetworkAvailable = !err;
 
             if (previousStatus !== this.isNetworkAvailable) {
