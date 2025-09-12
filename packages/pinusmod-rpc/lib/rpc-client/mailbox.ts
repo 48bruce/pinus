@@ -1,9 +1,15 @@
 /**
  * Default mailbox factory
  */
-import {create as mqttCreateMailBox} from './mailboxes/mqtt-mailbox';
+import * as Mailbox from './mailboxes/mqtt-mailbox';
+import { MailBox } from './mailboxes/mqtt-mailbox';
+// let Ws2Mailbox from ('./mailboxes/ws2-mailbox');
+// let WsMailbox from ('./mailboxes/ws-mailbox');
 import {create as tcpMailBoxCreate} from './mailboxes/tcp-mailbox';
+import {EventEmitter} from 'events';
 import {Tracer} from '../util/tracer';
+
+
 
 export interface MailBoxTimeoutCallback {
     (tracer: Tracer , err: Error , resp ?: any): void;
@@ -18,10 +24,6 @@ export interface MailBoxOpts {
     pkgSize?: number;
     ping?: number;
     pong?: number;
-    // 新增重连相关参数
-    enableReconnect?: boolean;
-    reconnectInterval?: number;
-    maxReconnectAttempts?: number;
 }
 
 export interface MailBoxMessage {
@@ -55,5 +57,17 @@ export interface MailBoxPkg {
  * @param {Object} opts construct parameters
  * @return {Object} mailbox instancef
  */
-export const createMqttMailBox = mqttCreateMailBox;
+export function createMqttMailBox (serverInfo: {id: string, host: string, port: number}, opts: MailBoxOpts): IMailBox {
+    // let mailbox = opts.mailbox || 'mqtt';
+    // let Mailbox = null;
+    // if (mailbox == 'ws') {
+    //     Mailbox = WsMailbox;
+    // } else if (mailbox == 'ws2') {
+    //     Mailbox = Ws2Mailbox;
+    // } else if (mailbox == 'mqtt') {
+    //     Mailbox = MqttMailbox;
+    // }
+    return Mailbox.create(serverInfo, opts);
+}
+
 export const createTcpMailBox = tcpMailBoxCreate;

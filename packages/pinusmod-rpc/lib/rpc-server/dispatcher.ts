@@ -1,4 +1,6 @@
 import {EventEmitter} from 'events';
+import * as utils from '../util/utils';
+import * as util from 'util';
 import {Tracer} from '../util/tracer';
 import {ProcessMsgCallBack} from './acceptor';
 

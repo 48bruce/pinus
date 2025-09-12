@@ -3,7 +3,7 @@ let logger = getLogger('pinusmod-rpc', 'ws-mailbox');
 import { EventEmitter } from 'events';
 import { constants } from '../../util/constants';
 import { Tracer } from '../../util/tracer';
-import {io, Socket} from 'socket.io-client';
+import {io} from 'socket.io-client';
 import * as utils from '../../util/utils';
 import * as util from 'util';
 import { Msg } from '../../util/coder';
@@ -24,10 +24,6 @@ export interface MailBoxOpts {
   timeout: number;
   context: any;
   pkgSize: number;
-  // 新增重连相关参数
-  enableReconnect?: boolean;
-  reconnectInterval?: number;
-  maxReconnectAttempts?: number;
 }
 
 export class WSMailBox extends EventEmitter {
@@ -44,14 +40,8 @@ export class WSMailBox extends EventEmitter {
   connected: boolean = false;
   closed: boolean = false;
   opts: any;
-  socket: Socket;
+  socket: any;
   _interval: any;
-  // 新增重连相关属性
-  enableReconnect: boolean;
-  reconnectInterval: number;
-  maxReconnectAttempts: number;
-  reconnectAttempts: number = 0;
-  reconnectTimer: any = null;
 
   constructor(server: { id: number, host: Function, port: string }, opts: MailBoxOpts) {
     super();
@@ -62,10 +52,6 @@ export class WSMailBox extends EventEmitter {
     this.interval = opts.interval || constants.DEFAULT_PARAM.INTERVAL;
     this.timeoutValue = opts.timeout || constants.DEFAULT_PARAM.CALLBACK_TIMEOUT;
     this.opts = opts;
-    // 新增重连参数
-    this.enableReconnect = opts.enableReconnect !== false;
-    this.reconnectInterval = opts.reconnectInterval || 5000;
-    this.maxReconnectAttempts = opts.maxReconnectAttempts || 10;
   }
 
   connect(tracer: Tracer, cb: (parameters?: Error) => void) {
@@ -75,11 +61,6 @@ export class WSMailBox extends EventEmitter {
       cb(new Error('mailbox has already connected.'));
       return;
     }
-    let self = this;
-    this._doConnect(tracer, cb);
-  }
-
-  private _doConnect(tracer: Tracer, cb: (parameters?: Error) => void) {
     let self = this;
     this.socket = io(this.host + ':' + this.port, <any>{
       'force new connection': true,
@@ -102,15 +83,11 @@ export class WSMailBox extends EventEmitter {
         return;
       }
       self.connected = true;
-      self.reconnectAttempts = 0;
       if (self.bufferMsg) {
         self._interval = setInterval(function () {
           self.flush(self);
         }, self.interval);
       }
-      // 连接恢复，自动 flush queue
-      self.flush(self);
-      self.emit('reconnected');
       cb();
     });
 
@@ -120,7 +97,7 @@ export class WSMailBox extends EventEmitter {
       cb(err);
     });
 
-    this.socket.on('disconnect', function (reason: Socket.DisconnectReason) {
+    this.socket.on('disconnect', function (reason: Error) {
       logger.error('rpc socket is disconnect, reason: %s', reason);
       let reqs = self.requests,
         cb;
@@ -128,31 +105,8 @@ export class WSMailBox extends EventEmitter {
         cb = reqs[id];
         cb(tracer, new Error('disconnect with remote server.'));
       }
-      self.connected = false;
       self.emit('close', self.id);
-      // 自动重连
-      if (self.enableReconnect && !self.closed) {
-        self._tryReconnect(tracer);
-      }
     });
-  }
-
-  private _tryReconnect(tracer: Tracer) {
-    if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      this.emit('max-retries', this.id);
-      return;
-    }
-    this.reconnectAttempts++;
-    this.emit('reconnecting', this.id, this.reconnectAttempts);
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-    }
-    // 重连时间间隔，最大20分钟
-    const timeout = Math.max(1200 * 1000, Math.pow(this.reconnectInterval, this.reconnectAttempts + 1));
-    this.reconnectTimer = setTimeout(() => {
-      if (this.closed) return;
-      this._doConnect(tracer, () => {});
-    }, timeout);
   }
 
   close() {
@@ -164,10 +118,6 @@ export class WSMailBox extends EventEmitter {
     if (this._interval) {
       clearInterval(this._interval);
       this._interval = null;
-    }
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-      this.reconnectTimer = null;
     }
     this.socket.disconnect();
   }
