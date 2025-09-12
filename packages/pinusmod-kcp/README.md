@@ -58,7 +58,7 @@ app.configure('production|development', 'connector', function () {
 ## 运行测试
 ### server
 ```sh
-lerna bootstrap
+yarn
 cd packages/pinusmod-kcp/examples
 # 启动
 yarn runserver
