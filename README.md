@@ -1,10 +1,6 @@
 # 关于 pinusmod
 
-<<<<<<< HEAD
 pinusmod 是 [pinus](https://github.com/node-pinus/pinus) 的修改自用版
-=======
-[![Actions Status](https://github.com/node-pinus/pinus/workflows/ci/badge.svg?branch=master&event=push)](https://github.com/node-pinus/pinus/actions)
->>>>>>> upstream/master
 
 与 pinus 的区别在于
 
