@@ -83,11 +83,13 @@ export class KcpSocket extends EventEmitter implements ISocket {
             if (!this.kcpObj) {
                 return;
             }
+            logger.trace('[KcpSocket] on input. msg: ' + String(msg).length + ', conv: ' + conv);
             this.kcpObj.input(msg);
             let data = this.kcpObj.recv();
             if (!data) {
                 return;
             }
+            logger.trace('[KcpSocket] get data. data: ' + data + ', conv: ' + conv);
             if (this.opts.stream) {
                 // stream 模式
                 const totalLen = data.byteLength;
@@ -159,6 +161,7 @@ export class KcpSocket extends EventEmitter implements ISocket {
         // 超时还未握手就绪，就删除此 socket
         this._initTimer = setTimeout(() => {
             if (this.state !== NetState.WORKING) {
+                logger.debug('[KcpSocket] handshake timeout. conv: ' + conv);
                 this.disconnect();
             }
             this._initTimer = null;
@@ -185,6 +188,7 @@ export class KcpSocket extends EventEmitter implements ISocket {
         } else if (!(msg instanceof Buffer)) {
             msg = Buffer.from(JSON.stringify(msg));
         }
+        logger.trace('[KcpSocket] send msg: ' + msg + ', conv: ' + this.opts?.conv);
         this.sendRaw(Package.encode(Package.TYPE_DATA, msg));
     }
 

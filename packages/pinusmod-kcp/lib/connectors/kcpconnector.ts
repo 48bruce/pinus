@@ -20,6 +20,10 @@ import { KcpSocket } from './kcpsocket';
 import * as pinuscoder from './pinuscoder';
 import { IConnector, DictionaryComponent, ProtobufComponent, IComponent, pinus } from 'pinusmod';
 import * as coder from '../common/coder';
+import { getLogger } from 'pinusmod-logger';
+import * as path from 'path';
+
+let logger = getLogger('pinus', path.basename(__filename));
 
 let curId = 1;
 
@@ -58,6 +62,11 @@ export class Connector extends EventEmitter {
         });
         this.on('disconnect', (kcpsocket) => {
             const conv = kcpsocket.opts.conv;
+            const kcpSocket = this.clientsForKcp[conv];
+            if (kcpSocket) {
+                kcpSocket.removeAllListeners('heartbeat');
+                kcpSocket.removeAllListeners('input');
+            }
             delete this.clientsForKcp[conv];
         });
         this.socket.on('error', (error) => {
@@ -69,17 +78,22 @@ export class Connector extends EventEmitter {
     }
 
     bindSocket(socket: dgram.Socket, address: string, port: number, msg?: any) {
-        let conv, kcpsocket: KcpSocket | undefined;
+        let conv: number;
+        let kcpsocket: KcpSocket | undefined;
         if (msg) {
             const kcpHead = pinuscoder.kcpHeadDecode(msg);
             conv = kcpHead.conv;
             kcpsocket = this.clientsForKcp[conv];
         }
         if (!kcpsocket && conv) {
+            logger.debug('[KcpConnector] create new KcpSocket. conv: ' + conv);
             kcpsocket = new KcpSocket(curId++, socket, address, port, Object.assign({ conv }, this.opts));
             pinuscoder.setupHandler(this, kcpsocket, this.opts);
             this.clientsForKcp[conv] = kcpsocket;
             this.emit('connection', kcpsocket);
+            kcpsocket.on('heartbeat', () => {
+                logger.debug('[KcpSocket] on heartbeat. conv: ' + conv);
+            });
         }
         if (!!msg && !!kcpsocket) {
             kcpsocket.emit('input', msg);
